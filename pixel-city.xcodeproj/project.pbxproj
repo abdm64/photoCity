@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		453C13B820F4B982009F5071 /* PopViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C13B720F4B982009F5071 /* PopViewC.swift */; };
+		453C13BA20F4F225009F5071 /* PhotoViewPopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */; };
+		45455B5920D938BE00959A0E /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45455B5820D938BE00959A0E /* PinterestLayout.swift */; };
+		458FCBD320DFB3ED00EB7592 /* InteresetPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FCBD220DFB3ED00EB7592 /* InteresetPhotoCell.swift */; };
+		45977CDB20E4E82100BA51D1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45977CDA20E4E82100BA51D1 /* Data.swift */; };
+		45977CDD20E4EFB000BA51D1 /* extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45977CDC20E4EFB000BA51D1 /* extention.swift */; };
+		45C3BF4F20EA45840005168D /* viewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3BF4E20EA45840005168D /* viewBar.swift */; };
+		45C3BF5120EA5D1D0005168D /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3BF5020EA5D1D0005168D /* RoundBtn.swift */; };
+		45FA52F220DEE40C0063E91A /* PhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FA52F120DEE40C0063E91A /* PhotoVC.swift */; };
 		71167C981F1D498100EF4312 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71167C971F1D498100EF4312 /* AppDelegate.swift */; };
 		71167C9A1F1D498100EF4312 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71167C991F1D498100EF4312 /* MapVC.swift */; };
 		71167C9D1F1D498100EF4312 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71167C9B1F1D498100EF4312 /* Main.storyboard */; };
@@ -20,6 +29,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		453C13B720F4B982009F5071 /* PopViewC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewC.swift; sourceTree = "<group>"; };
+		453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewPopCell.swift; sourceTree = "<group>"; };
+		453E23E220E1137200C913AD /* pixel-city-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixel-city-Bridging-Header.h"; sourceTree = "<group>"; };
+		45455B5820D938BE00959A0E /* PinterestLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		458FCBD220DFB3ED00EB7592 /* InteresetPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteresetPhotoCell.swift; sourceTree = "<group>"; };
+		45977CDA20E4E82100BA51D1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		45977CDC20E4EFB000BA51D1 /* extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extention.swift; sourceTree = "<group>"; };
+		45C3BF4E20EA45840005168D /* viewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewBar.swift; sourceTree = "<group>"; };
+		45C3BF5020EA5D1D0005168D /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
+		45FA52F120DEE40C0063E91A /* PhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVC.swift; sourceTree = "<group>"; };
 		71167C941F1D498100EF4312 /* pixel-city.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pixel-city.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71167C971F1D498100EF4312 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71167C991F1D498100EF4312 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -48,6 +67,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45977CD920E4E81000BA51D1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				45977CDA20E4E82100BA51D1 /* Data.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		45D9A6F820E27581007C1734 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				45977CDC20E4EFB000BA51D1 /* extention.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
 		71167C8B1F1D498100EF4312 = {
 			isa = PBXGroup;
 			children = (
@@ -69,8 +104,9 @@
 		71167C961F1D498100EF4312 /* pixel-city */ = {
 			isa = PBXGroup;
 			children = (
+				45977CD920E4E81000BA51D1 /* Data */,
+				45D9A6F820E27581007C1734 /* Extention */,
 				71167CAC1F1D49D500EF4312 /* Utilities */,
-				71167CAB1F1D49C600EF4312 /* Extensions */,
 				71167CAA1F1D49BB00EF4312 /* View */,
 				71167CA91F1D49AE00EF4312 /* Controller */,
 				71167C971F1D498100EF4312 /* AppDelegate.swift */,
@@ -78,6 +114,7 @@
 				71167C9E1F1D498100EF4312 /* Assets.xcassets */,
 				71167CA01F1D498100EF4312 /* LaunchScreen.storyboard */,
 				71167CA31F1D498100EF4312 /* Info.plist */,
+				453E23E220E1137200C913AD /* pixel-city-Bridging-Header.h */,
 			);
 			path = "pixel-city";
 			sourceTree = "<group>";
@@ -87,6 +124,7 @@
 			children = (
 				71167C991F1D498100EF4312 /* MapVC.swift */,
 				71A713751F21732F00B1BBD4 /* PopVC.swift */,
+				45FA52F120DEE40C0063E91A /* PhotoVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -96,20 +134,19 @@
 			children = (
 				71167CAD1F1D632300EF4312 /* DroppablePin.swift */,
 				71167CAF1F1EA23400EF4312 /* PhotoCell.swift */,
+				458FCBD220DFB3ED00EB7592 /* InteresetPhotoCell.swift */,
+				45C3BF4E20EA45840005168D /* viewBar.swift */,
+				45C3BF5020EA5D1D0005168D /* RoundBtn.swift */,
+				453C13B720F4B982009F5071 /* PopViewC.swift */,
+				453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		71167CAB1F1D49C600EF4312 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		71167CAC1F1D49D500EF4312 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				45455B5820D938BE00959A0E /* PinterestLayout.swift */,
 				71167CB11F1EA6C700EF4312 /* Constants.swift */,
 			);
 			path = Utilities;
@@ -144,7 +181,6 @@
 				71167C911F1D498100EF4312 /* Frameworks */,
 				71167C921F1D498100EF4312 /* Resources */,
 				3CF314B4FDF99DCC4FFCCC09 /* [CP] Embed Pods Frameworks */,
-				E85A3A8B18BCC4ADD320853C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -162,11 +198,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Caleb Stultz";
 				TargetAttributes = {
 					71167C931F1D498100EF4312 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0940;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -204,13 +242,20 @@
 /* Begin PBXShellScriptBuildPhase section */
 		3CF314B4FDF99DCC4FFCCC09 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-pixel-city/Pods-pixel-city-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -219,32 +264,20 @@
 		};
 		A6D77A067F3C021AEC166350 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pixel-city-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E85A3A8B18BCC4ADD320853C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pixel-city/Pods-pixel-city-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -255,10 +288,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				71A713761F21732F00B1BBD4 /* PopVC.swift in Sources */,
+				45977CDD20E4EFB000BA51D1 /* extention.swift in Sources */,
+				45977CDB20E4E82100BA51D1 /* Data.swift in Sources */,
 				71167CB21F1EA6C700EF4312 /* Constants.swift in Sources */,
 				71167CB01F1EA23400EF4312 /* PhotoCell.swift in Sources */,
+				45455B5920D938BE00959A0E /* PinterestLayout.swift in Sources */,
+				453C13B820F4B982009F5071 /* PopViewC.swift in Sources */,
 				71167C9A1F1D498100EF4312 /* MapVC.swift in Sources */,
+				458FCBD320DFB3ED00EB7592 /* InteresetPhotoCell.swift in Sources */,
+				45C3BF4F20EA45840005168D /* viewBar.swift in Sources */,
 				71167CAE1F1D632300EF4312 /* DroppablePin.swift in Sources */,
+				45C3BF5120EA5D1D0005168D /* RoundBtn.swift in Sources */,
+				453C13BA20F4F225009F5071 /* PhotoViewPopCell.swift in Sources */,
+				45FA52F220DEE40C0063E91A /* PhotoVC.swift in Sources */,
 				71167C981F1D498100EF4312 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,12 +341,16 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -354,12 +400,16 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -393,11 +443,18 @@
 			baseConfigurationReference = BB9685C6F2EC747D30A12EB9 /* Pods-pixel-city.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HLCDLFXF5Y;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UPQQD4DP7M;
 				INFOPLIST_FILE = "pixel-city/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stultzapps.pixel-city";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Abdm64.pixel-city";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "pixel-city/pixel-city-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -408,11 +465,17 @@
 			baseConfigurationReference = EC10EEBFD4E813891E40CDF8 /* Pods-pixel-city.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HLCDLFXF5Y;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UPQQD4DP7M;
 				INFOPLIST_FILE = "pixel-city/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stultzapps.pixel-city";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Abdm64.pixel-city";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "pixel-city/pixel-city-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

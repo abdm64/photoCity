@@ -9,8 +9,13 @@
 import UIKit
 
 class PhotoCell: UICollectionViewCell {
+    var imageView: UIImageView!
     override init(frame: CGRect) {
         super.init(frame: frame)
+        imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = false
+        contentView.addSubview(imageView)
     }
     
     required init?(coder aDecoder: NSCoder) {

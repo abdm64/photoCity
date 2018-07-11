@@ -1,9 +1,9 @@
 //
 //  Constants.swift
-//  pixel-city
+//  MapsKitApp
 //
-//  Created by Caleb Stultz on 7/18/17.
-//  Copyright © 2017 Caleb Stultz. All rights reserved.
+//  Created by ABD on 11/06/2018.
+//  Copyright © 2018 ABD. All rights reserved.
 //
 
 import Foundation
