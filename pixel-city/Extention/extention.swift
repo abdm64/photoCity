@@ -29,9 +29,11 @@ extension MapVC  {
     func showAlertMoveToPhoto(city : String){
         let alert = UIAlertController(title: "Show Photo", message: "You Drop a pin in \(city) would you show the pictures taken in \(city) !!? ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (action : UIAlertAction) in
-            self.performSegue(withIdentifier:"name", sender: self)
-
-           self.animateIn()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { // change 2 to desired
+                self.animateIn()
+                self.collectionViewPop.reloadData()
+            }
+            
             
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -56,6 +58,14 @@ extension MapVC  {
         }
     }
     func showAlertCityName() {
+        
+        self.cancelAllSessions()
+        self.imageUrlArray = []
+        self.imageArray = []
+        self.imageTitles = []
+        self.jsonViewArray = []
+        self.jsonFavArray = []
+
         let alert = UIAlertController(title: "Show Photo", message: "Enter the name of the city ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { (action : UIAlertAction) in
             guard  let textAlert = (alert.textFields?.first as! UITextField).text else {return}
@@ -65,21 +75,14 @@ extension MapVC  {
                 if error == nil {
                     
                 // self.annotationSearch?.coordinate()
+                    self.removePin()
                     self.annotationSearch = DroppablePin(coordinate: coordinate2D, identifier: "droppablePin1")
-//                    self.retrieveUrls(forAnnotation: self.annotationSearch!, handler: { (finished) in
-//                        if finished {
-//                            print(self.annotationSearch?.coordinate.latitude)
-//                            print(self.annotationSearch?.coordinate.longitude)
-//                            self.removeSpinner()
-//                            self.removeProgressLbl()
-//                            self.collectionView?.reloadData()
-//                        }
-//                    })
-                    
-                    let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate2D, 40000, 40000  )
-                  
+                    let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate2D, 40000, 40000)
                     self.mapView.setRegion(coordinateRegion, animated: true)
                     self.mapView.addAnnotation(self.annotationSearch!)
+                  //  self.annotationSearch = self.annotationPassed
+//
+                    
                     
                     
                     
@@ -87,12 +90,32 @@ extension MapVC  {
                     print(error.debugDescription)
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // change 2 to desired number of seconds
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.retrieveUrls(forAnnotation: self.annotationSearch!) { (finished) in
+                    if finished {
+                        self.retrieveImages(handler: { (finished) in
+                            if finished {
+                                
+                                self.collectionViewPop?.reloadData()
+                            }
+                        })
+                    }
+                }
+                
+                
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                // change 2 to desired number of seconds
                 self.animateIn()
+                self.collectionViewPop?.reloadData()
+                
 
             }
-            
-           self.cityNamePop.text = textAlert
+            //textAlert.capitalized
+           self.cityNamePop.text = textAlert.capitalized
             
                     }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

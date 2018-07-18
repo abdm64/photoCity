@@ -10,8 +10,22 @@ import UIKit
 
 class PhotoViewPopCell: UICollectionViewCell {
     
+    override func awakeFromNib() {
+        setView()
+    }
+    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var likeText: UILabel!
     @IBOutlet weak var commentTxt: UILabel!
+    
+    func setView(){
+        self.layer.backgroundColor = UIColor.lightGray.cgColor
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
+        
+        
+        
+    }
+
 }
