@@ -10,4 +10,5 @@ target 'pixel-city' do
  	 pod 'AlamofireImage', '~> 3.3'
 	 pod 'SDWebImage'
 	 pod 'SwiftyJSON'
+	 pod 'SVProgressHUD'
 end

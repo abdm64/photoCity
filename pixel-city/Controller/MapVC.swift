@@ -15,7 +15,7 @@ import SwiftyJSON
 import SDWebImage
 
 
-class MapVC: UIViewController, UIGestureRecognizerDelegate {
+class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var blurEffect: UIVisualEffectView!
     
     @IBOutlet weak var barTxt: UILabel!
@@ -23,9 +23,14 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pullUpView: UIView!
+    @IBOutlet weak var infoBtn: UIButton!
     
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var cityNamePop : UILabel!
     static let instance = MapVC()
+    
+    
+    @IBOutlet weak var searchButton: RoundBtn!
     
     @IBOutlet weak var collectionViewPop: UICollectionView!
     
@@ -38,12 +43,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var nameCity : String? = ""
     
     var spinner: UIActivityIndicatorView?
-    var progressLbl: UILabel?
+    
     
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
     
     var imageUrlArray = [String]()
+    var imageUrlArrayHD = [String]()
     var imageArray = [UIImage]()
     var imageTitles = [String]()
     var jsonViewArray = [String]()
@@ -51,6 +57,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var effect: UIVisualEffect!
     var coordinnat = CLLocationCoordinate2D()
     var annotationSearch : DroppablePin?
+    var photoInfos = [PhotoJsonInfo]()
+    let transition = CircularTransition()
+    var circlePlace = Bool()
    
    // let blurEffectView = UIVisualEffectView()
     var blurEffectView = UIVisualEffectView()
@@ -63,31 +72,37 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         dementionForPopView()
          isAppAlreadyLaunchedOnce()
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        
+        
         if UIScreen.main.bounds.width > 320 {
             barTxt.font = barTxt.font.withSize(17)
         }
         
+    
         
     }
-   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         locationManager.delegate = self
         configureLocationServices()
+        circlePlace = true
         
         addLongPress()
-        //self.revealViewController().delegate = self as! SWRevealViewControllerDelegate
-       self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
-    
+       
+        
         collectionViewPop.delegate = self
         collectionViewPop.dataSource = self
         
         
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        collectionViewPop.visibleCells.forEach {
+            transform(cell: $0)
+        }
     }
     
    
@@ -100,17 +115,14 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         
     }
     override func viewDidLayoutSubviews() {
-       // print(self.popView.sizeToFit())
+    
         dementionForPopView()
     
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var vc = segue.destination as! PhotoVC
-        
-        //vc.annotation3 = annotation1
-        vc.annotationInterests = annotationPassed
-        //vc.titleTxt.text = nameCity
-        vc.cityName = nameCity
+        let contactvc = segue.destination as! ContactVC
+        contactvc.transitioningDelegate = self
+        contactvc.modalPresentationStyle = .custom
     }
     
    
@@ -126,36 +138,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
    
     
     
-    func addSpinner() {
-        spinner = UIActivityIndicatorView()
-        spinner?.center = CGPoint(x: (screenSize.width / 2) - ((spinner?.frame.width)! / 2), y: 150)
-        spinner?.activityIndicatorViewStyle = .whiteLarge
-        spinner?.color = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        spinner?.startAnimating()
-        collectionView?.addSubview(spinner!)
-    }
     
-    func removeSpinner() {
-        if spinner != nil {
-            spinner?.removeFromSuperview()
-            
-        }
-    }
     
-    func addProgressLbl() {
-        progressLbl = UILabel()
-        progressLbl?.frame = CGRect(x: (screenSize.width / 2) - 120, y: 175, width: 240, height: 40)
-        progressLbl?.font = UIFont(name: "Avenir Next", size: 14)
-        progressLbl?.textColor = #colorLiteral(red: 0.2530381978, green: 0.2701380253, blue: 0.3178575337, alpha: 1)
-        progressLbl?.textAlignment = .center
-        collectionView?.addSubview(progressLbl!)
-    }
     
-    func removeProgressLbl() {
-        if progressLbl != nil {
-            progressLbl?.removeFromSuperview()
-        }
-    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -164,7 +149,10 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         if authorizationStatus == .authorizedAlways || authorizationStatus
             
             == .authorizedWhenInUse {
-                centerMapOnUserLocation()
+            UIView.animate(withDuration: 1) {
+                self.centerMapOnUserLocation()
+            }
+            
            
             
         }
@@ -174,16 +162,52 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
       
         self.animateOut()
        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        cancelAllSessions()
         
     }
     
     
     @IBAction func enterCityNameBtn(_ sender: Any) {
+        self.removePin()
+        cancelAllSessions()
         showAlertCityName()
     
 }
 
-
+    @IBAction func infoBtn(_ sender: Any) {
+         performSegue(withIdentifier: "contact", sender: self)
+       
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        if circlePlace == true {
+            transition.startingPoint = infoBtn.center
+            transition.circleColor = #colorLiteral(red: 0.3532904983, green: 0.4177474976, blue: 0.768464148, alpha: 1)
+        } else if circlePlace == false {
+             transition.startingPoint = self.view.center
+             transition.circleColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        
+        if circlePlace == true {
+            transition.startingPoint = infoBtn.center
+              transition.circleColor = #colorLiteral(red: 0.3532904983, green: 0.4177474976, blue: 0.768464148, alpha: 1)
+        } else if circlePlace == false {
+            transition.startingPoint = self.view.center
+            transition.circleColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+     //   transition.circleColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        return transition
+    }
+    
 
 } // Class
 
@@ -255,10 +279,17 @@ extension MapVC: MKMapViewDelegate {
                     completionHandler(location.coordinate, nil)
                     
                     return
+                } else {
+                    Utilities.alert(title: "Error", message: "Try Again ")
+                     completionHandler((self.locationManager.location?.coordinate)! , error as NSError?)
                 }
+            }else {
+               
+               completionHandler((self.locationManager.location?.coordinate)! , error as NSError?)
+                
             }
         }
-       // completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+       //
 
         
         
@@ -273,11 +304,13 @@ extension MapVC: MKMapViewDelegate {
     @objc func dropPin(sender: UILongPressGestureRecognizer) {
         
         removePin()
-        print("LongPressAdded")
+      
         
         cancelAllSessions()
         
         imageUrlArray = []
+        imageUrlArrayHD = []
+        photoInfos = []
         imageArray = []
         imageTitles = []
         jsonViewArray = []
@@ -287,7 +320,7 @@ extension MapVC: MKMapViewDelegate {
   
         
         
-        addProgressLbl()
+       
         
         
         
@@ -297,12 +330,11 @@ extension MapVC: MKMapViewDelegate {
         let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
         
         mapView.addAnnotation(annotation)
-        // self.annotation1 = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
-       // self.annotationPassed = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
+        
         
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(touchCoordinate, 30000,30000)
         mapView.setRegion(coordinateRegion, animated: true)
-        // performSegue(withIdentifier:"name", sender: self)
+        
         let adressLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
         
         getAddressFromGeocodeCoordinate(coordinate: adressLocation)
@@ -313,7 +345,7 @@ extension MapVC: MKMapViewDelegate {
            
         }
         
-       // print("####" + nameCity!)
+      
         
         
         retrieveUrls(forAnnotation: annotation) { (finished) in
@@ -349,10 +381,12 @@ extension MapVC: MKMapViewDelegate {
             
             //l
             for photo in photosDictArray {
-                let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_h_d.jpg"
+                let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_s_d.jpg"
+                let postUrlHD = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!)_h_d.jpg"
               //  var array = [JSON]()
                 let title1 = photo["title"] as! String
                 let id = photo["id"] as! String
+               
                 
                 
                 Alamofire.request(getInfoFromAPi(forId: id)).responseJSON(completionHandler: { (response) in
@@ -360,62 +394,58 @@ extension MapVC: MKMapViewDelegate {
                     guard let infoJson : JSON = JSON(response.result.value) else {return
                         Utilities.alert(title: "Error", message: "There is Problem with Connection")
                     }
-                    self.getNumOfView(data: infoJson, id: "id")
-                    PhotoInfoService.instance.findAllPhotoInfo(id: id, completion: { (sucsses) in
-                        if sucsses {
-                            print("Ok")
-                        } else {
-                            print("error")
-                        }
-                    })
+                    self.getNumOfView(data: infoJson, id: id)
+                    
                 })
+               
                 Alamofire.request(favFlickr(id: id)).responseJSON(completionHandler: { (respone) in
-                    guard let favJSON : JSON = JSON(respone.result.value) else {
-                        return Utilities.alert(title: "Error", message: "Problem with Connection")
-                    }
+                    guard let favJSON : JSON = JSON(respone.result.value ?? "") else {return}
                     
                     self.getNumbFav(data: favJSON)
-                   // print(favNumb)
+                   
                 })
             
                                 self.imageUrlArray.append(postUrl)
+                                self.imageUrlArrayHD.append(postUrlHD)
                                 self.imageTitles.append(title1)
                 
             }
-            //print(self.jsonFavArray)
+           
             handler(true)
           
-            print(self.imageUrlArray)
-            print(self.jsonFavArray)
-            print(self.jsonViewArray)
+            
             
         }
     }
     func getNumOfView(data : JSON , id : String){
         let viwesNumb = data["photo"]["views"].stringValue
-      
+       // var titleArray = [String]()
+       
+        let title = data["photo"]["title"]["_content"].stringValue
+        let location = data["photo"]["location"]["locality"]["_content"].stringValue
+       let desc = data["photo"]["description"]["_content"].stringValue
+       let date = data["photo"]["dates"]["taken"].stringValue
+        let commentNumb =  data["photo"]["comments"]["_content"].stringValue
+        let owner = data["photo"]["owner"]["path_alias"].stringValue
+        print(owner)
+        let photoInfo = PhotoJsonInfo( title: title, location: location, desc: desc, date: date, viewNumb: viwesNumb, commentNumb: commentNumb, owner: owner, id: id)
+       
+        self.photoInfos.append(photoInfo)
+    
         jsonViewArray.append(viwesNumb)
-        print("View",jsonViewArray)
+       // print("infos", photoInfos)
+      
+       
+       
     }
     func getNumbFav(data : JSON) {
          let favNumb = data["photo"]["total"].stringValue
         jsonFavArray.append(favNumb)
-        print("fav",jsonFavArray)
+      //  print("fav",jsonFavArray)
             }
     
     func retrieveImages(handler: @escaping (_ status: Bool) -> ()) {
-        //        for url in imageUrlArray {
-        //            Alamofire.request(url).responseImage(completionHandler: { (response) in
-        //                guard let image = response.result.value else { return }
-        //                self.imageArray.append(image)
-        //                self.progressLbl?.text = "\(self.imageArray.count)/10 IMAGES DOWNLOADED"
-        //                //self.imageUrlArray.count
-        //
-        //                if self.imageArray.count ==  15 {
-        //                    handler(true)
-        //                }
-        //            })
-        //        }
+        
     }
     
     func cancelAllSessions() {
@@ -451,33 +481,63 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCellpop", for: indexPath) as? PhotoViewPopCell else { return UICollectionViewCell() }
-        
-        
             cell.imageView.sd_setImage(with: URL(string:imageUrlArray[indexPath.row]), placeholderImage: #imageLiteral(resourceName: "ImageDownload"), options: [.continueInBackground, .progressiveDownload, .scaleDownLargeImages] , completed: nil)
         
-            cell.imageView.contentMode = .scaleAspectFill
+       
+       
+        
+    
+        // Problem To Fixted later
+        if jsonFavArray.count > 0 && jsonViewArray.count > 0 {
             cell.commentTxt.text = jsonFavArray[indexPath.row]
             cell.likeText.text =  jsonViewArray[indexPath.row]
-
+        } else {
+                
+                Utilities.alert(title: "Error", message: "Network Problem ??!")
+                
+        }
+         transform(cell: cell)
+        
         return cell
     }
+  
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else { return }
-        popVC.initData(forImage: imageArray[indexPath.row], forText: imageTitles[indexPath.row])
-        print(indexPath.row)
-        present(popVC, animated: true, completion: nil)
+    
+        
+        
+//        var react = cell.frame
+//        let originViewRoot = self.collectionViewPop.convert(react, to: self.view)
+      
+        let photoInfoVc = storyboard?.instantiateViewController(withIdentifier: "photoInfo1") as! PhotoInfoVC
+        photoInfoVc.modalPresentationStyle = .custom
+        photoInfoVc.passedDate = photoInfos[indexPath.row].date
+        photoInfoVc.passedDesc = photoInfos[indexPath.row].desc
+        photoInfoVc.passedTitle = imageTitles[indexPath.row]
+        photoInfoVc.passedLocation = photoInfos[indexPath.row].location
+        photoInfoVc.passedCommentNumb = photoInfos[indexPath.row].commentNumb
+        photoInfoVc.passedFavNumb = jsonFavArray[indexPath.row]
+        photoInfoVc.passedViewNumb = photoInfos[indexPath.row].viewNumb
+        photoInfoVc.passedUrl = imageUrlArrayHD[indexPath.row]
+        photoInfoVc.passedOwner = photoInfos[indexPath.row].owner
+        photoInfoVc.passedID = photoInfos[indexPath.row].id
+        photoInfoVc.modalPresentationStyle = .custom
+        photoInfoVc.transitioningDelegate = self
+        self.present(photoInfoVc, animated: true, completion: nil)
+        
+      
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
-        var numOfColums : CGFloat = 2
-//        if UIScreen.main.bounds.width > 320 {
-//
-//
-//        }
-        //numOfColums = 2
+        
+        
+        let numOfColums : CGFloat = 2
+
         let spaceBtweenCells : CGFloat = 2
         let padding : CGFloat = 10
         
@@ -486,6 +546,26 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
         
         
         return CGSize(width: cellDimension, height: cellDimension)
+    }
+    func transform(cell : UICollectionViewCell){
+        let coverFrame = cell.convert(cell.bounds, to: self.view)
+        let tranfrormOffsetY = collectionViewPop.bounds.height * 2/3
+        let percent = getPercent(value: (coverFrame.minX - tranfrormOffsetY) / (collectionViewPop.bounds.height - tranfrormOffsetY))
+        let maxScaleDiffrence : CGFloat = 0.2
+        let scale = percent * maxScaleDiffrence
+        cell.transform = CGAffineTransform(scaleX:  1 - scale, y: 1 - scale)
+        
+    }
+    func getPercent(value : CGFloat)-> CGFloat{
+        let lBound : CGFloat = 0
+        let uBound : CGFloat = 1
+        if value < lBound {
+            return lBound
+        } else if value > uBound {
+            
+            return uBound
+        }
+        return value
     }
 }
 
@@ -506,16 +586,7 @@ extension MapVC: UIViewControllerPreviewingDelegate {
     }
 }
 
-extension MapVC : PinterestLayoutDelegate {
-    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-    
-    
-    
-    
-    
-}
+
 
 
 
@@ -537,6 +608,7 @@ extension  MapVC {
     }
     
     func animateIn(){
+        circlePlace = false
         createBlurEffect()
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.view.addSubview(popView)
@@ -551,6 +623,7 @@ extension  MapVC {
         
     }
     func animateOut(){
+        circlePlace = true
         UIView.animate(withDuration: 0.4, animations: {
             self.popView.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
             self.popView.alpha = 0

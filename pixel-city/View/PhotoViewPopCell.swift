@@ -19,12 +19,23 @@ class PhotoViewPopCell: UICollectionViewCell {
     @IBOutlet weak var likeText: UILabel!
     @IBOutlet weak var commentTxt: UILabel!
     
+    @IBOutlet weak var greyView: UIView!
+    
     func setView(){
         self.layer.backgroundColor = UIColor.lightGray.cgColor
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
+    
         
         
+    }
+    func setUpCell(){
+        let favImage = UIImageView(image: UIImage(named: "a"))
+        let viewImage = UIImageView(image: UIImage(named: "b"))
+        
+        
+        
+
         
     }
 

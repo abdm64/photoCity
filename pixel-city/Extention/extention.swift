@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import SVProgressHUD
 
 extension MapVC  {
     
@@ -29,7 +30,10 @@ extension MapVC  {
     func showAlertMoveToPhoto(city : String){
         let alert = UIAlertController(title: "Show Photo", message: "You Drop a pin in \(city) would you show the pictures taken in \(city) !!? ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (action : UIAlertAction) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { // change 2 to desired
+            SVProgressHUD.show(withStatus: "Please Wait")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                // change 2 to desired
+                SVProgressHUD.dismiss()
                 self.animateIn()
                 self.collectionViewPop.reloadData()
             }
@@ -61,6 +65,8 @@ extension MapVC  {
         
         self.cancelAllSessions()
         self.imageUrlArray = []
+        self.imageUrlArrayHD = []
+        self.photoInfos = []
         self.imageArray = []
         self.imageTitles = []
         self.jsonViewArray = []
@@ -68,9 +74,10 @@ extension MapVC  {
 
         let alert = UIAlertController(title: "Show Photo", message: "Enter the name of the city ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { (action : UIAlertAction) in
-            guard  let textAlert = (alert.textFields?.first as! UITextField).text else {return}
-           // textAlert.
-            print(textAlert)
+            guard  let textAlert = (alert.textFields?.first as! UITextField).text else {return
+                Utilities.alert(title: "Error", message: "Enter Name Of city PLZ")
+            }
+           
             self.getCordinnaatFromCityName(cityName: textAlert) { (coordinate2D, error) in
                 if error == nil {
                     
@@ -93,27 +100,40 @@ extension MapVC  {
             
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                if self.annotationSearch != nil {
                 self.retrieveUrls(forAnnotation: self.annotationSearch!) { (finished) in
-                    if finished {
-                        self.retrieveImages(handler: { (finished) in
-                            if finished {
-                                
-                                self.collectionViewPop?.reloadData()
-                            }
-                        })
+                    
+                        if finished {
+                            self.retrieveImages(handler: { (finished) in
+                                if finished {
+                                    
+                                    self.collectionViewPop?.reloadData()
+                                }
+                            })
+                        }
                     }
+                    // PrgrussHUD enable
+                    SVProgressHUD.show(withStatus: "Please Wait")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                        SVProgressHUD.dismiss()
+                        self.animateIn()
+                        self.collectionViewPop?.reloadData()
+                        // dismiss ProgrussHud
+                        
+                        
+                    }
+                    
+                }else {
+                    Utilities.alert(title: "Error", message: "Try Again !!")
+                    self.cityNamePop.text = "Enter city name"
                 }
                 
-                
             }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                // change 2 to desired number of seconds
-                self.animateIn()
-                self.collectionViewPop?.reloadData()
                 
+                
+            
 
-            }
+           
             //textAlert.capitalized
            self.cityNamePop.text = textAlert.capitalized
             
@@ -130,6 +150,25 @@ extension MapVC  {
         
         
     }
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
