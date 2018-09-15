@@ -16,38 +16,30 @@ import SDWebImage
 
 
 class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+    // Outlet
     @IBOutlet weak var blurEffect: UIVisualEffectView!
-    
     @IBOutlet weak var barTxt: UILabel!
     @IBOutlet var popView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pullUpViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pullUpView: UIView!
     @IBOutlet weak var infoBtn: UIButton!
-    
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var cityNamePop : UILabel!
-    static let instance = MapVC()
-    
-    
     @IBOutlet weak var searchButton: RoundBtn!
-    
     @IBOutlet weak var collectionViewPop: UICollectionView!
-    
     @IBOutlet weak var menuBtn: UIButton!
+    // Var
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 100000
     var annotationPassed : DroppablePin?
     var screenSize = UIScreen.main.bounds
     var nameCity : String? = ""
-    
+    var location : String? = ""
     var spinner: UIActivityIndicatorView?
-    
-    
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
-    
     var imageUrlArray = [String]()
     var imageUrlArrayHD = [String]()
     var imageArray = [UIImage]()
@@ -60,19 +52,18 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     var photoInfos = [PhotoJsonInfo]()
     let transition = CircularTransition()
     var circlePlace = Bool()
-   
-   // let blurEffectView = UIVisualEffectView()
     var blurEffectView = UIVisualEffectView()
-    override func awakeFromNib() {
-        SDImageCache.shared().clearMemory()
-        SDImageCache.shared().clearDisk(onCompletion: nil)
-        
-    }
+    
+    
+    
+  
     
     override func viewDidAppear(_ animated: Bool) {
+        SDImageCache.shared().clearMemory()
+        SDImageCache.shared().clearDisk(onCompletion: nil)
         dementionForPopView()
          isAppAlreadyLaunchedOnce()
-        
+       
         
         if UIScreen.main.bounds.width > 320 {
             barTxt.font = barTxt.font.withSize(17)
@@ -91,13 +82,14 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         circlePlace = true
         
         addLongPress()
-       
+       addTap()
         
         collectionViewPop.delegate = self
         collectionViewPop.dataSource = self
         
+       // registerForPreviewing(with: self, sourceView: collectionViewPop)
         
-        menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         collectionViewPop.visibleCells.forEach {
@@ -112,6 +104,14 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         longPressed.delegate = self
         mapView.addGestureRecognizer(longPressed)
        
+        
+    }
+    func addTap(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(animateOut))
+        tap.numberOfTapsRequired = 1
+        tap.delegate = self
+        blurEffectView.addGestureRecognizer(tap)
+        
         
     }
     override func viewDidLayoutSubviews() {
@@ -275,7 +275,9 @@ extension MapVC: MKMapViewDelegate {
             if error == nil {
                 if let placemark = placemarks?[0] {
                     let location = placemark.location!
-                    
+                    let cityname = placemark.locality
+                    self.cityNamePop.text = cityname
+                    self.location = cityname
                     completionHandler(location.coordinate, nil)
                     
                     return
@@ -307,7 +309,7 @@ extension MapVC: MKMapViewDelegate {
       
         
         cancelAllSessions()
-        
+        self.nameCity == ""
         imageUrlArray = []
         imageUrlArrayHD = []
         photoInfos = []
@@ -315,15 +317,6 @@ extension MapVC: MKMapViewDelegate {
         imageTitles = []
         jsonViewArray = []
         jsonFavArray = []
-        
-        
-  
-        
-        
-       
-        
-        
-        
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
@@ -372,7 +365,7 @@ extension MapVC: MKMapViewDelegate {
     }
      
     func retrieveUrls(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()) {
-        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40)).responseJSON { (response) in
+        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 100)).responseJSON { (response) in
             
             //  print(response.data.c)
             guard let json = response.result.value as? Dictionary<String, AnyObject> else { return }
@@ -419,21 +412,18 @@ extension MapVC: MKMapViewDelegate {
     }
     func getNumOfView(data : JSON , id : String){
         let viwesNumb = data["photo"]["views"].stringValue
-       // var titleArray = [String]()
-       
         let title = data["photo"]["title"]["_content"].stringValue
         let location = data["photo"]["location"]["locality"]["_content"].stringValue
-       let desc = data["photo"]["description"]["_content"].stringValue
-       let date = data["photo"]["dates"]["taken"].stringValue
+        let desc = data["photo"]["description"]["_content"].stringValue
+        let date = data["photo"]["dates"]["taken"].stringValue
         let commentNumb =  data["photo"]["comments"]["_content"].stringValue
         let owner = data["photo"]["owner"]["path_alias"].stringValue
-        print(owner)
+        
         let photoInfo = PhotoJsonInfo( title: title, location: location, desc: desc, date: date, viewNumb: viwesNumb, commentNumb: commentNumb, owner: owner, id: id)
        
         self.photoInfos.append(photoInfo)
-    
         jsonViewArray.append(viwesNumb)
-       // print("infos", photoInfos)
+      
       
        
        
@@ -441,7 +431,7 @@ extension MapVC: MKMapViewDelegate {
     func getNumbFav(data : JSON) {
          let favNumb = data["photo"]["total"].stringValue
         jsonFavArray.append(favNumb)
-      //  print("fav",jsonFavArray)
+     
             }
     
     func retrieveImages(handler: @escaping (_ status: Bool) -> ()) {
@@ -480,22 +470,33 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCellpop", for: indexPath) as? PhotoViewPopCell else { return UICollectionViewCell() }
-            cell.imageView.sd_setImage(with: URL(string:imageUrlArray[indexPath.row]), placeholderImage: #imageLiteral(resourceName: "ImageDownload"), options: [.continueInBackground, .progressiveDownload, .scaleDownLargeImages] , completed: nil)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCellpop", for: indexPath) as? PhotoViewPopCell else { return PhotoViewPopCell() }
         
-       
+        
+        if imageUrlArray.count == 0 {
+            cityNamePop.text = "no Photo in this area"
+            Utilities.alert(title: "Error", message: "no Photo in this area Try Again")
+        } else {
+             cell.imageView.sd_setImage(with: URL(string:imageUrlArray[indexPath.row]), placeholderImage: #imageLiteral(resourceName: "ImageDownload"), options: [.continueInBackground, .progressiveDownload, .scaleDownLargeImages] , completed: nil)
+            
+            if jsonFavArray.count > 0 && jsonViewArray.count > 0 {
+                    cell.commentTxt.text = jsonFavArray[indexPath.row]
+                    cell.likeText.text =  jsonViewArray[indexPath.row]
+                
+            } else {
+                
+                Utilities.alert(title: "Error", message: "Try Again")
+     
+            }
+            
+            
+            
+        }
        
         
     
-        // Problem To Fixted later
-        if jsonFavArray.count > 0 && jsonViewArray.count > 0 {
-            cell.commentTxt.text = jsonFavArray[indexPath.row]
-            cell.likeText.text =  jsonViewArray[indexPath.row]
-        } else {
-                
-                Utilities.alert(title: "Error", message: "Network Problem ??!")
-                
-        }
+       
+       
          transform(cell: cell)
         
         return cell
@@ -503,12 +504,7 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
   
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
         
-        
-//        var react = cell.frame
-//        let originViewRoot = self.collectionViewPop.convert(react, to: self.view)
-      
         let photoInfoVc = storyboard?.instantiateViewController(withIdentifier: "photoInfo1") as! PhotoInfoVC
         photoInfoVc.modalPresentationStyle = .custom
         photoInfoVc.passedDate = photoInfos[indexPath.row].date
@@ -521,12 +517,12 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
         photoInfoVc.passedUrl = imageUrlArrayHD[indexPath.row]
         photoInfoVc.passedOwner = photoInfos[indexPath.row].owner
         photoInfoVc.passedID = photoInfos[indexPath.row].id
+        photoInfoVc.passedCityName = self.nameCity!
         photoInfoVc.modalPresentationStyle = .custom
         photoInfoVc.transitioningDelegate = self
         self.present(photoInfoVc, animated: true, completion: nil)
-        
-      
     }
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
     }
@@ -569,22 +565,31 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
     }
 }
 
-extension MapVC: UIViewControllerPreviewingDelegate {
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = collectionView?.indexPathForItem(at: location), let cell = collectionView?.cellForItem(at: indexPath) else { return nil }
-        
-        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else { return nil }
-        
-        popVC.initData(forImage: imageArray[indexPath.row], forText: imageTitles[indexPath.row])
-        
-        previewingContext.sourceRect = cell.contentView.frame
-        return popVC
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        show(viewControllerToCommit, sender: self)
-    }
-}
+//extension MapVC: UIViewControllerPreviewingDelegate {
+//
+//    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+//        guard let indexPath = collectionViewPop.indexPathForItem(at: location), let cell = collectionViewPop.cellForItem(at: indexPath) else { return nil }
+//         previewingContext.sourceRect = cell.contentView.frame
+//
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        guard let popVC = sb.instantiateViewController(withIdentifier: "photoInfo1") as? PhotoInfoVC else { return nil }
+//
+//
+//
+//
+//
+//            popVC.imageView.sd_setImage(with: URL(string :imageUrlArrayHD[indexPath.row]))
+//            popVC.DescTxt.text = photoInfos[indexPath.row].desc
+//
+//
+//
+//        return popVC
+//    }
+//
+//    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+//        show(viewControllerToCommit, sender: self)
+//    }
+//}
 
 
 
@@ -594,14 +599,12 @@ extension  MapVC {
     
     
     func createBlurEffect(){
-        //let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        
         UIView.animate(withDuration: 0.7) {
             self.blurEffectView.effect = UIBlurEffect(style: .dark)
         }
-        //blurEffectView = UIVisualEffectView(effect: blurEffect)
+       
         blurEffectView.frame.size = CGSize(width: screenSize.width, height: screenSize.height)
-        
-       // blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
         self.view.addSubview(blurEffectView)
       
         
@@ -622,7 +625,7 @@ extension  MapVC {
         }
         
     }
-    func animateOut(){
+   @objc func animateOut(){
         circlePlace = true
         UIView.animate(withDuration: 0.4, animations: {
             self.popView.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)

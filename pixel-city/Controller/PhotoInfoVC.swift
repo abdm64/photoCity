@@ -20,11 +20,11 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var locationTxt: UILabel!
     @IBOutlet weak var titleTxt: UILabel!
     @IBOutlet weak var DescTxt: UILabel!
-    
     @IBOutlet weak var viewNumb: UILabel!
     @IBOutlet weak var favNumb: UILabel!
     @IBOutlet weak var CommentBtn: UIButton!
     @IBOutlet weak var hightOfPhoto: NSLayoutConstraint!
+    @IBOutlet weak var cityNameTxt: UILabel!
     
     // Var
     var passedDate = ""
@@ -40,6 +40,8 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     var passedFavNumb = ""
     var passedViewNumb = ""
     var passedOwner = ""
+    var passedCityName = ""
+    
     
     
     
@@ -68,14 +70,21 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         dateTxt.text =  "Date : \(passedDate)"
         locationTxt.text = "Location : \(passedLocation)"
         titleTxt.text = "Title : \(passedTitle)"
-        DescTxt.text = "Desc : \(passedDesc)"
+        DescTxt.text = "Descrption : \(passedDesc)"
         CommentBtn.setTitle("Comments : \((passedCommentNumb))", for: .normal)
         favNumb.text = passedFavNumb
         viewNumb.text = passedViewNumb
+        
+            cityNameTxt.text = passedLocation  //passedCityName
+        
+        
         imageView.sd_setImage(with: URL(string :passedUrl), placeholderImage: #imageLiteral(resourceName: "ImageDownload"), options: [.continueInBackground, .progressiveDownload, .scaleDownLargeImages] , completed: nil)
         
     }
     
+    func initData( date : String, location : String, title : String, desc : String, fav : String, view : String, forurl urlData : String) {
+        
+    }
     @objc func configurePhotoHight(){
         
        
@@ -128,6 +137,13 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         }
         
     }
+    
+    @IBAction func commentPressed(_ sender: Any) {
+//        let webVC = storyboard?.instantiateViewController(withIdentifier: "webVc") as! WebVC
+//        webVC.passedUrl = createUrl(id: passedID, owner: passedOwner)
+//        self.present(webVC, animated: true, completion: nil)
+    }
+    
     func createUrl(id : String, owner : String) -> String {
         let url = "https:www.flickr.com/photos/\(owner)/\(id)/"
         

@@ -15,13 +15,9 @@ import SVProgressHUD
 class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var constraint: NSLayoutConstraint!
-    
     @IBOutlet weak var labelText: UILabel!
-    
     @IBOutlet weak var contactWidth: NSLayoutConstraint!
-    
     @IBOutlet weak var rateWidth: NSLayoutConstraint!
-    
     @IBOutlet weak var shareWidth: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +35,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     
     
     @IBAction func rateAppBtn(_ sender: Any) {
-      //  SVProgressHUD.show(withStatus: "Please Wait")
+   
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
             

@@ -2,8 +2,7 @@
 //  File.swift
 //  pixel-city
 //
-//  Created by ABD on 27/07/2018.
-//  Copyright © 2018 Caleb Stultz. All rights reserved.
+//  Created by ABD on 27/07/2018 024917658
 //
 
 import Foundation

@@ -14,7 +14,7 @@ struct Utilities {
     
     static func alert(title: String?, message: String) {
         let alert = UIAlertController(title: title ?? "PhotoMapView", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         UIApplication.shared.delegate!.window!!.rootViewController!.present(alert, animated: true, completion: nil)
     }
     

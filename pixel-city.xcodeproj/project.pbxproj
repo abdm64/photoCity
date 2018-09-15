@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		45113804210653C200FC74D9 /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45113803210653C200FC74D9 /* CircleTransition.swift */; };
+		4532AD0C210F66FD00B06C0C /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532AD0B210F66FD00B06C0C /* WebVC.swift */; };
 		453366032108FD4400791FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453366022108FD4300791FDD /* Assets.xcassets */; };
 		453C13B820F4B982009F5071 /* PopViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C13B720F4B982009F5071 /* PopViewC.swift */; };
 		453C13BA20F4F225009F5071 /* PhotoViewPopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */; };
 		455B263120FE242A008035DD /* PhotoJsonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B263020FE242A008035DD /* PhotoJsonInfo.swift */; };
+		458A89A82118CAC7000F4520 /* HowToUseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458A89A62118CAC7000F4520 /* HowToUseVC.swift */; };
+		458A89A92118CAC7000F4520 /* HowToUseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458A89A72118CAC7000F4520 /* HowToUseVC.xib */; };
 		45977CDD20E4EFB000BA51D1 /* extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45977CDC20E4EFB000BA51D1 /* extention.swift */; };
 		459B2CEE20FB88FF009FD5A4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459B2CED20FB88FF009FD5A4 /* SWRevealViewController.m */; };
 		459B2CF020FB92EE009FD5A4 /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B2CEF20FB92EE009FD5A4 /* ContactVC.swift */; };
@@ -34,11 +37,14 @@
 
 /* Begin PBXFileReference section */
 		45113803210653C200FC74D9 /* CircleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTransition.swift; sourceTree = "<group>"; };
+		4532AD0B210F66FD00B06C0C /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		453366022108FD4300791FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		453C13B720F4B982009F5071 /* PopViewC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewC.swift; sourceTree = "<group>"; };
 		453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewPopCell.swift; sourceTree = "<group>"; };
 		453E23E220E1137200C913AD /* pixel-city-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixel-city-Bridging-Header.h"; sourceTree = "<group>"; };
 		455B263020FE242A008035DD /* PhotoJsonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoJsonInfo.swift; sourceTree = "<group>"; };
+		458A89A62118CAC7000F4520 /* HowToUseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseVC.swift; sourceTree = "<group>"; };
+		458A89A72118CAC7000F4520 /* HowToUseVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HowToUseVC.xib; sourceTree = "<group>"; };
 		45977CDC20E4EFB000BA51D1 /* extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extention.swift; sourceTree = "<group>"; };
 		459B2CEC20FB88FF009FD5A4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		459B2CED20FB88FF009FD5A4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -82,6 +88,14 @@
 				459E63FA20FFB9290042C77A /* Utilities.swift */,
 			);
 			path = service;
+			sourceTree = "<group>";
+		};
+		458A89A52118CA9A000F4520 /* nib */ = {
+			isa = PBXGroup;
+			children = (
+				458A89A72118CAC7000F4520 /* HowToUseVC.xib */,
+			);
+			path = nib;
 			sourceTree = "<group>";
 		};
 		45977CD920E4E81000BA51D1 /* Model */ = {
@@ -130,6 +144,7 @@
 		71167C961F1D498100EF4312 /* pixel-city */ = {
 			isa = PBXGroup;
 			children = (
+				458A89A52118CA9A000F4520 /* nib */,
 				455B263220FE32AB008035DD /* service */,
 				45977CD920E4E81000BA51D1 /* Model */,
 				45D9A6F820E27581007C1734 /* Extention */,
@@ -154,8 +169,10 @@
 				71167C991F1D498100EF4312 /* MapVC.swift */,
 				71A713751F21732F00B1BBD4 /* PopVC.swift */,
 				459B2CEF20FB92EE009FD5A4 /* ContactVC.swift */,
+				458A89A62118CAC7000F4520 /* HowToUseVC.swift */,
 				45FE5E5420FCEF470095C6C3 /* PhotoInfoVC.swift */,
 				45B27EAC210BC3290074C947 /* File.swift */,
+				4532AD0B210F66FD00B06C0C /* WebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -263,6 +280,7 @@
 			files = (
 				71167CA21F1D498100EF4312 /* LaunchScreen.storyboard in Resources */,
 				459E63F920FFA3B50042C77A /* icons8-user-location-50.png in Resources */,
+				458A89A92118CAC7000F4520 /* HowToUseVC.xib in Resources */,
 				453366032108FD4400791FDD /* Assets.xcassets in Resources */,
 				71167C9D1F1D498100EF4312 /* Main.storyboard in Resources */,
 			);
@@ -331,6 +349,8 @@
 				45113804210653C200FC74D9 /* CircleTransition.swift in Sources */,
 				45B27EAD210BC3290074C947 /* File.swift in Sources */,
 				45FE5E5520FCEF480095C6C3 /* PhotoInfoVC.swift in Sources */,
+				4532AD0C210F66FD00B06C0C /* WebVC.swift in Sources */,
+				458A89A82118CAC7000F4520 /* HowToUseVC.swift in Sources */,
 				459E63FB20FFB9290042C77A /* Utilities.swift in Sources */,
 				453C13B820F4B982009F5071 /* PopViewC.swift in Sources */,
 				71167C9A1F1D498100EF4312 /* MapVC.swift in Sources */,
@@ -494,7 +514,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "pixel-city/pixel-city-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -515,7 +535,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "pixel-city/pixel-city-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

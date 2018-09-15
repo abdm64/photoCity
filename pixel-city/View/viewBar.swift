@@ -22,13 +22,6 @@ class viewBar: UIView {
     }
 
     override func layoutSubviews() {
-//        super.layoutSubviews()
-//        self.layer.masksToBounds = false
-//        self.layer.cornerRadius = 3.0
-//        self.layer.shadowOpacity = 0.75
-//        self.layer.shadowRadius = 3.0
-//        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-//        self.layer.shadowColor = UIColor(red: 157/255, green: 157/255, blue: 157/255, alpha: 1.0).cgColor
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
