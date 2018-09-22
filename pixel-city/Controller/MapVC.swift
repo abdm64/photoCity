@@ -29,6 +29,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     @IBOutlet weak var searchButton: RoundBtn!
     @IBOutlet weak var collectionViewPop: UICollectionView!
     @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var textHightContr: NSLayoutConstraint!
+    
     // Var
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
@@ -54,6 +56,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     var circlePlace = Bool()
     var blurEffectView = UIVisualEffectView()
     
+    @IBOutlet weak var barHight: NSLayoutConstraint!
     
     
   
@@ -62,25 +65,30 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         SDImageCache.shared().clearMemory()
         SDImageCache.shared().clearDisk(onCompletion: nil)
         dementionForPopView()
+        setUpView()
          isAppAlreadyLaunchedOnce()
-       
+       // howToUse()
         
         if UIScreen.main.bounds.width > 320 {
             barTxt.font = barTxt.font.withSize(17)
+        } else {
+            print("notIphone5")
         }
         
     
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        setUpViewX()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         locationManager.delegate = self
         configureLocationServices()
         circlePlace = true
-        
+        setUpView()
         addLongPress()
        addTap()
         
@@ -96,7 +104,22 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
             transform(cell: $0)
         }
     }
-    
+    func setUpView(){
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
+            print("not iphoneX")
+            barHight.constant = 75.0
+            
+            
+            print(barHight)
+        } else {
+            print(barHight)
+            barHight.constant = 85.0
+            
+            
+        }
+        
+        
+    }
    
     func addLongPress() {
         let longPressed = UILongPressGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
@@ -475,17 +498,44 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
         
         if imageUrlArray.count == 0 {
             cityNamePop.text = "no Photo in this area"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.animateOut()
+                self.removePin()
+                self.cancelAllSessions()
+                self.imageUrlArray = []
+                self.imageUrlArrayHD = []
+                self.photoInfos = []
+                self.imageArray = []
+                self.imageTitles = []
+                self.jsonViewArray = []
+                self.jsonFavArray = []
+                
+                
+            }
+            
             Utilities.alert(title: "Error", message: "no Photo in this area Try Again")
         } else {
              cell.imageView.sd_setImage(with: URL(string:imageUrlArray[indexPath.row]), placeholderImage: #imageLiteral(resourceName: "ImageDownload"), options: [.continueInBackground, .progressiveDownload, .scaleDownLargeImages] , completed: nil)
-            
-            if jsonFavArray.count > 0 && jsonViewArray.count > 0 {
+        
+            if jsonFavArray.count  > 1 || jsonViewArray.count > 1 {
+                
                     cell.commentTxt.text = jsonFavArray[indexPath.row]
                     cell.likeText.text =  jsonViewArray[indexPath.row]
                 
-            } else {
                 
-                Utilities.alert(title: "Error", message: "Try Again")
+            } else {
+                self.animateOut()
+                self.removePin()
+                cancelAllSessions()
+                imageUrlArray = []
+                imageUrlArrayHD = []
+                photoInfos = []
+                imageArray = []
+                imageTitles = []
+                jsonViewArray = []
+                jsonFavArray = []
+                Utilities.alert(title: "Error", message: "Check your internet Connection and  Try Again")
+                
      
             }
             
@@ -644,6 +694,24 @@ extension  MapVC {
     
     override func viewWillLayoutSubviews() {
         dementionForPopView()
+    }
+    func setUpViewX(){
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
+            print("not iphoneX")
+            barHight.constant = 75.0
+           
+            
+            print(barHight)
+        } else {
+            print(barHight)
+            barHight.constant = 85.0
+          //  aboutPositionH.constant = 10.0
+            textHightContr.constant = 10
+            
+        }
+        
+        
+        
     }
    
     

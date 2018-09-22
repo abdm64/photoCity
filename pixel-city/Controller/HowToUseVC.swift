@@ -13,6 +13,7 @@ class HowToUseVC: UIViewController {
     @IBOutlet weak var view2: viewBar!
     @IBOutlet weak var view1: viewBar!
     
+    @IBOutlet weak var handImage: UIImageView!
     @IBOutlet weak var arrow: UIImageView!
     @IBOutlet weak var view3: viewBar!
     @IBOutlet weak var bgView: UIView!
@@ -27,6 +28,9 @@ class HowToUseVC: UIViewController {
         addTouch()
         tap = 0
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+       
     }
     override func viewDidLayoutSubviews() {
         view1.layer.cornerRadius = 12
@@ -123,7 +127,7 @@ class HowToUseVC: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.howToUseTxt.text = "Welcome to City Photos"
                 self.animateView2()
-                
+                 self.handImage.transform = self.handImage.transform.rotated(by: CGFloat.init(M_PI))
                 
             }
             

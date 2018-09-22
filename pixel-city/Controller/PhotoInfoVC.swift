@@ -25,6 +25,8 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var CommentBtn: UIButton!
     @IBOutlet weak var hightOfPhoto: NSLayoutConstraint!
     @IBOutlet weak var cityNameTxt: UILabel!
+    @IBOutlet weak var barHight: NSLayoutConstraint!
+    @IBOutlet weak var cityNamePositionH: NSLayoutConstraint!
     
     // Var
     var passedDate = ""
@@ -43,7 +45,11 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     var passedCityName = ""
     
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        setUpView()
+        //howToUse()
+        isAppAlreadyLaunchedOnce()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +70,22 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
    
     @IBAction func dismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
+    }
+    func setUpView(){
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
+           //DO NOTHING AT ALL
+            print(barHight)
+            barHight.constant = 75.0
+            cityNamePositionH.constant = 0
+        } else {
+            print(barHight)
+            barHight.constant = 85.0
+            cityNamePositionH.constant = 10
+            
+            
+        }
+        
         
     }
     func configureInfo() {
@@ -142,6 +164,28 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
 //        let webVC = storyboard?.instantiateViewController(withIdentifier: "webVc") as! WebVC
 //        webVC.passedUrl = createUrl(id: passedID, owner: passedOwner)
 //        self.present(webVC, animated: true, completion: nil)
+    }
+    func howToUse(){
+        let swipeUp = SwipeUP()
+        swipeUp.modalPresentationStyle = .custom
+        present(swipeUp, animated: false, completion: nil)
+        
+        print("howToUse")
+        
+    }
+    func isAppAlreadyLaunchedOnce()->Bool{
+        let defaults = UserDefaults.standard
+        
+        if let isAppAlreadyLaunchedOnce = defaults.string(forKey: "isAppAlreadyLaunchedOncePhotoVC"){
+           
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOncePhotoVC")
+           
+            
+            self.howToUse()
+            return false
+        }
     }
     
     func createUrl(id : String, owner : String) -> String {

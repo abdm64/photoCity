@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450971FF214FC14500E57253 /* detectDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450971FE214FC14500E57253 /* detectDevice.swift */; };
+		450972022150058D00E57253 /* SwipeUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450972002150058D00E57253 /* SwipeUP.swift */; };
+		450972032150058E00E57253 /* SwipeUP.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450972012150058D00E57253 /* SwipeUP.xib */; };
 		45113804210653C200FC74D9 /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45113803210653C200FC74D9 /* CircleTransition.swift */; };
 		4532AD0C210F66FD00B06C0C /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532AD0B210F66FD00B06C0C /* WebVC.swift */; };
 		453366032108FD4400791FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453366022108FD4300791FDD /* Assets.xcassets */; };
@@ -36,6 +39,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		450971FE214FC14500E57253 /* detectDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detectDevice.swift; sourceTree = "<group>"; };
+		450972002150058D00E57253 /* SwipeUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUP.swift; sourceTree = "<group>"; };
+		450972012150058D00E57253 /* SwipeUP.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeUP.xib; sourceTree = "<group>"; };
 		45113803210653C200FC74D9 /* CircleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTransition.swift; sourceTree = "<group>"; };
 		4532AD0B210F66FD00B06C0C /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		453366022108FD4300791FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				459E63FA20FFB9290042C77A /* Utilities.swift */,
+				450971FE214FC14500E57253 /* detectDevice.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -94,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				458A89A72118CAC7000F4520 /* HowToUseVC.xib */,
+				450972012150058D00E57253 /* SwipeUP.xib */,
 			);
 			path = nib;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 				45FE5E5420FCEF470095C6C3 /* PhotoInfoVC.swift */,
 				45B27EAC210BC3290074C947 /* File.swift */,
 				4532AD0B210F66FD00B06C0C /* WebVC.swift */,
+				450972002150058D00E57253 /* SwipeUP.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -281,6 +290,7 @@
 				71167CA21F1D498100EF4312 /* LaunchScreen.storyboard in Resources */,
 				459E63F920FFA3B50042C77A /* icons8-user-location-50.png in Resources */,
 				458A89A92118CAC7000F4520 /* HowToUseVC.xib in Resources */,
+				450972032150058E00E57253 /* SwipeUP.xib in Resources */,
 				453366032108FD4400791FDD /* Assets.xcassets in Resources */,
 				71167C9D1F1D498100EF4312 /* Main.storyboard in Resources */,
 			);
@@ -358,6 +368,8 @@
 				71167CAE1F1D632300EF4312 /* DroppablePin.swift in Sources */,
 				459B2CEE20FB88FF009FD5A4 /* SWRevealViewController.m in Sources */,
 				45C3BF5120EA5D1D0005168D /* RoundBtn.swift in Sources */,
+				450971FF214FC14500E57253 /* detectDevice.swift in Sources */,
+				450972022150058D00E57253 /* SwipeUP.swift in Sources */,
 				453C13BA20F4F225009F5071 /* PhotoViewPopCell.swift in Sources */,
 				71167C981F1D498100EF4312 /* AppDelegate.swift in Sources */,
 			);

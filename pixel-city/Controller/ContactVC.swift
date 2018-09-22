@@ -12,6 +12,7 @@ import Social
 import StoreKit
 import SVProgressHUD
 
+
 class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var constraint: NSLayoutConstraint!
@@ -19,14 +20,47 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     @IBOutlet weak var contactWidth: NSLayoutConstraint!
     @IBOutlet weak var rateWidth: NSLayoutConstraint!
     @IBOutlet weak var shareWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var barHight: NSLayoutConstraint!
+    @IBOutlet weak var aboutPositionH: NSLayoutConstraint!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        howToUse()
+        
+        isAppAlreadyLaunchedOnce()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setUpView()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    swipeUp()
-       
+         swipeUp()
+        
+        
+         
+        
     }
-    
+    func setUpView(){
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
+             print("not iphoneX")
+            barHight.constant = 75.0
+            aboutPositionH.constant = 7
+           
+            print(barHight)
+        } else {
+           print(barHight)
+            barHight.constant = 85.0
+            aboutPositionH.constant = 10.0
+            
+        }
+        
+        
+        
+    }
 
      override var preferredStatusBarStyle: UIStatusBarStyle {return .default}
    
@@ -92,10 +126,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
         
        
     }
-    func share(id : Int){
-        
-        
-    }
+    
     func mail(){
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
@@ -124,6 +155,28 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
         siwpeUp.direction = .up
         siwpeUp.delegate = self
         self.view.addGestureRecognizer(siwpeUp)
+    }
+    func howToUse(){
+        let swipeUp = SwipeUP()
+        swipeUp.modalPresentationStyle = .custom
+        present(swipeUp, animated: false, completion: nil)
+        
+        print("howToUse")
+        
+    }
+    func isAppAlreadyLaunchedOnce()->Bool{
+        let defaults = UserDefaults.standard
+        
+        if let isAppAlreadyLaunchedOnce = defaults.string(forKey: "isAppAlreadyLaunchedOnceContactVC"){
+            
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnceContactVC")
+           
+            
+            self.howToUse()
+            return false
+        }
     }
    
 }
