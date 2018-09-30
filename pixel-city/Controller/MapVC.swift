@@ -71,16 +71,22 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         
         if UIScreen.main.bounds.width > 320 {
             barTxt.font = barTxt.font.withSize(17)
+            if DeviceType.IS_IPHONEX {
+                barTxt.font = barTxt.font.withSize(15)
+                
+            }
+            
         } else {
             print("notIphone5")
         }
+       
         
     
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpViewX()
+        Utilities.setUpViewX(hight: barHight, textHight: textHightContr, h: 0.0)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -695,24 +701,7 @@ extension  MapVC {
     override func viewWillLayoutSubviews() {
         dementionForPopView()
     }
-    func setUpViewX(){
-        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
-            print("not iphoneX")
-            barHight.constant = 75.0
-           
-            
-            print(barHight)
-        } else {
-            print(barHight)
-            barHight.constant = 85.0
-          //  aboutPositionH.constant = 10.0
-            textHightContr.constant = 10
-            
-        }
-        
-        
-        
-    }
+    
    
     
 }

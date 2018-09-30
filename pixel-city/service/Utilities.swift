@@ -18,5 +18,24 @@ struct Utilities {
         UIApplication.shared.delegate!.window!!.rootViewController!.present(alert, animated: true, completion: nil)
     }
     
+    static func setUpViewX(hight : NSLayoutConstraint, textHight : NSLayoutConstraint, h: CGFloat){
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
+            print("not iphoneX")
+            hight.constant = 75.0
+            textHight.constant = 0
+            
+            
+        } else {
+          
+            hight.constant = 85.0
+           
+            textHight.constant = h
+            
+        }
+        
+        
+        
+    }
+    
     
 }

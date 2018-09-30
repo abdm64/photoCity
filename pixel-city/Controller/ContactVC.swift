@@ -27,12 +27,12 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     override func viewDidAppear(_ animated: Bool) {
         
         
-        howToUse()
+      //  howToUse()
         
         isAppAlreadyLaunchedOnce()
     }
     override func viewWillAppear(_ animated: Bool) {
-        setUpView()
+        Utilities.setUpViewX(hight: barHight, textHight: aboutPositionH, h : 12.0)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,23 +44,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
          
         
     }
-    func setUpView(){
-        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
-             print("not iphoneX")
-            barHight.constant = 75.0
-            aboutPositionH.constant = 7
-           
-            print(barHight)
-        } else {
-           print(barHight)
-            barHight.constant = 85.0
-            aboutPositionH.constant = 10.0
-            
-        }
-        
-        
-        
-    }
+    
 
      override var preferredStatusBarStyle: UIStatusBarStyle {return .default}
    

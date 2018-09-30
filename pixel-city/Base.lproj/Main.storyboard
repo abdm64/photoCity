@@ -39,15 +39,15 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold-tap to drop a pin and view photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qb5-L2-2kR">
-                                        <rect key="frame" x="83.666666666666686" y="37.666666666666664" width="267" height="20"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="14"/>
+                                        <rect key="frame" x="98.333333333333329" y="38.666666666666664" width="247.66666666666669" height="18"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="13"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.32549019610000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="qb5-L2-2kR" firstAttribute="centerX" secondItem="7CQ-3h-gDg" secondAttribute="centerX" constant="10" id="HZf-dy-FWg"/>
+                                    <constraint firstItem="qb5-L2-2kR" firstAttribute="centerX" secondItem="7CQ-3h-gDg" secondAttribute="centerX" constant="15" id="HZf-dy-FWg"/>
                                     <constraint firstItem="OhX-tz-ia0" firstAttribute="leading" secondItem="7CQ-3h-gDg" secondAttribute="leading" constant="8" id="gfA-NU-Yum"/>
                                     <constraint firstItem="OhX-tz-ia0" firstAttribute="centerY" secondItem="qb5-L2-2kR" secondAttribute="centerY" id="k39-S4-fYA"/>
                                     <constraint firstItem="qb5-L2-2kR" firstAttribute="centerY" secondItem="7CQ-3h-gDg" secondAttribute="centerY" constant="10" id="tJj-Zf-Slq"/>

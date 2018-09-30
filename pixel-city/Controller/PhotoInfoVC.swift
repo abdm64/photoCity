@@ -46,7 +46,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpView()
+        Utilities.setUpViewX(hight: barHight, textHight: cityNamePositionH, h : 0.0)
         //howToUse()
         isAppAlreadyLaunchedOnce()
     }
@@ -72,22 +72,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         self.dismiss(animated: true, completion: nil)
         
     }
-    func setUpView(){
-        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
-           //DO NOTHING AT ALL
-            print(barHight)
-            barHight.constant = 75.0
-            cityNamePositionH.constant = 0
-        } else {
-            print(barHight)
-            barHight.constant = 85.0
-            cityNamePositionH.constant = 10
-            
-            
-        }
-        
-        
-    }
+    
     func configureInfo() {
         dateTxt.text =  "Date : \(passedDate)"
         locationTxt.text = "Location : \(passedLocation)"
