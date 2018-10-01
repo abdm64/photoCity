@@ -3,7 +3,7 @@
 //  pixel-city
 //
 //  Created by ABD on 17/09/2018.
-//  Copyright © 2018 Caleb Stultz. All rights reserved.
+//  Copyright © 2018 ABDM64. All rights reserved.
 //
 
 import Foundation
