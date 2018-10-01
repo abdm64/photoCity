@@ -18,15 +18,33 @@ struct Utilities {
         UIApplication.shared.delegate!.window!!.rootViewController!.present(alert, animated: true, completion: nil)
     }
     
-    static func setUpViewX(hight : NSLayoutConstraint, textHight : NSLayoutConstraint, h: CGFloat){
+    static func setUpViewX(hight : NSLayoutConstraint, textHight : NSLayoutConstraint, h: CGFloat, btnCenter : NSLayoutConstraint){
         if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
             print("not iphoneX")
             hight.constant = 75.0
-            textHight.constant = 0
-            
+            textHight.constant = 10
+            btnCenter.constant = 10
             
         } else {
           
+            hight.constant = 85.0
+            btnCenter.constant = h
+            textHight.constant = h
+            
+        }
+        
+        
+        
+    }
+    static func setUpViewXS(hight : NSLayoutConstraint, textHight : NSLayoutConstraint, h: CGFloat, g : CGFloat){
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
+            print("not iphoneX")
+            hight.constant = 75.0
+            textHight.constant = g // 10 OK for about and map VC
+            
+            
+        } else {
+            
             hight.constant = 85.0
            
             textHight.constant = h

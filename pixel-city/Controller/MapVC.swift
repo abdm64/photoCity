@@ -29,7 +29,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     @IBOutlet weak var searchButton: RoundBtn!
     @IBOutlet weak var collectionViewPop: UICollectionView!
     @IBOutlet weak var menuBtn: UIButton!
-    @IBOutlet weak var textHightContr: NSLayoutConstraint!
+   
+    @IBOutlet weak var btnCenter: NSLayoutConstraint!
+    @IBOutlet weak var txtCenter: NSLayoutConstraint!
     
     // Var
     var locationManager = CLLocationManager()
@@ -86,7 +88,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        Utilities.setUpViewX(hight: barHight, textHight: textHightContr, h: 0.0)
+        Utilities.setUpViewX(hight: barHight, textHight: txtCenter, h: 15, btnCenter: btnCenter)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
