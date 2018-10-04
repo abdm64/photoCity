@@ -32,7 +32,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
         isAppAlreadyLaunchedOnce()
     }
     override func viewWillAppear(_ animated: Bool) {
-        Utilities.setUpViewXS(hight: barHight, textHight: aboutPositionH, h : 12.0, g: 10
+        Utilities.setUpViewXContact(hight: barHight, textHight: aboutPositionH, h : 12.0, g: 10
         )
     }
     override func viewDidLoad() {

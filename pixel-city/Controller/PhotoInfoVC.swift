@@ -46,7 +46,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        Utilities.setUpViewXS(hight: barHight, textHight: cityNamePositionH, h : 0.0, g: 0)
+        Utilities.setUpViewXContact(hight: barHight, textHight: cityNamePositionH, h : 0.0, g: 0)
         //howToUse()
         isAppAlreadyLaunchedOnce()
     }

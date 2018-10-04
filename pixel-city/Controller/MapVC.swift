@@ -67,7 +67,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         SDImageCache.shared().clearMemory()
         SDImageCache.shared().clearDisk(onCompletion: nil)
         dementionForPopView()
-        setUpView()
+       // setUpView()
          isAppAlreadyLaunchedOnce()
        // howToUse()
         
@@ -96,7 +96,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         locationManager.delegate = self
         configureLocationServices()
         circlePlace = true
-        setUpView()
+      
         addLongPress()
        addTap()
         
@@ -112,22 +112,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
             transform(cell: $0)
         }
     }
-    func setUpView(){
-        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_6_7 || DeviceType.IS_IPHONE_6P_7P {
-            print("not iphoneX")
-            barHight.constant = 75.0
-            
-            
-            print(barHight)
-        } else {
-            print(barHight)
-            barHight.constant = 85.0
-            
-            
-        }
-        
-        
-    }
+   
    
     func addLongPress() {
         let longPressed = UILongPressGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
