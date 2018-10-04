@@ -494,6 +494,7 @@
                         <outlet property="dateTxt" destination="5dF-pE-j3N" id="pxu-Cp-7Cy"/>
                         <outlet property="favNumb" destination="C4d-lh-L0X" id="ApD-BZ-P8b"/>
                         <outlet property="hightOfPhoto" destination="TeD-Ay-mLA" id="Qag-Zv-42S"/>
+                        <outlet property="imageHight" destination="TeD-Ay-mLA" id="Ygd-vf-3s9"/>
                         <outlet property="imageView" destination="7VD-RJ-YpK" id="qSC-o8-3cP"/>
                         <outlet property="locationTxt" destination="ZP3-O6-URS" id="r9q-GR-ltj"/>
                         <outlet property="titleTxt" destination="qqi-kZ-5yp" id="yXs-h0-aez"/>

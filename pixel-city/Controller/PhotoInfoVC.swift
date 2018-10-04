@@ -27,7 +27,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var cityNameTxt: UILabel!
     @IBOutlet weak var barHight: NSLayoutConstraint!
     @IBOutlet weak var cityNamePositionH: NSLayoutConstraint!
-    
+    @IBOutlet weak var imageHight: NSLayoutConstraint!
     // Var
     var passedDate = ""
     var passedTitle = ""
@@ -43,12 +43,14 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     var passedViewNumb = ""
     var passedOwner = ""
     var passedCityName = ""
+   var screenSize = UIScreen.main.bounds
     
     
     override func viewWillAppear(_ animated: Bool) {
         Utilities.setUpViewXContact(hight: barHight, textHight: cityNamePositionH, h : 0.0, g: 0)
         //howToUse()
         isAppAlreadyLaunchedOnce()
+        hightOfPhoto.constant = 0.4 * screenSize.size.height
     }
     
     override func viewDidLoad() {
@@ -93,17 +95,17 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         
     }
     @objc func configurePhotoHight(){
-        
+
        
-        if hightOfPhoto.constant == CGFloat(250) {
+        if   hightOfPhoto.constant == 0.4 * screenSize.size.height {
             UIView.animate(withDuration: 0.25) {
-                self.hightOfPhoto.constant = 450
+                self.hightOfPhoto.constant = 0.55 * self.screenSize.size.height
                 self.view.layoutIfNeeded()
             }
             
-        } else if hightOfPhoto.constant == CGFloat(450) {
+        } else if   hightOfPhoto.constant == 0.55 * screenSize.size.height {
             UIView.animate(withDuration: 0.25) {
-                self.hightOfPhoto.constant = 250
+                 self.hightOfPhoto.constant = 0.4 * self.screenSize.size.height
                 self.view.layoutIfNeeded()
                 
             }
