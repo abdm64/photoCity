@@ -2,8 +2,8 @@
 //  DroppablePin.swift
 //  pixel-city
 //
-//  Created by Caleb Stultz on 7/17/17.
-//  Copyright © 2017 Caleb Stultz. All rights reserved.
+//  Created by ABD on 18/07/2018.
+//  Copyright © 2018 ABD. All rights reserved.
 //
 
 import UIKit
