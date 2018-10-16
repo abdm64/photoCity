@@ -43,6 +43,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     var passedViewNumb = ""
     var passedOwner = ""
     var passedCityName = ""
+    let boldDesc = "Description"
    var screenSize = UIScreen.main.bounds
     
     
@@ -76,6 +77,11 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func configureInfo() {
+        var date = UILabel()
+        date.text = "Date"
+        date.font =  UIFont.systemFont(ofSize: 15)
+        print(date)
+        //date.text = "Date"
         dateTxt.text =  "Date : \(passedDate)"
         locationTxt.text = "Location : \(passedLocation)"
         titleTxt.text = "Title : \(passedTitle)"

@@ -37,13 +37,8 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
          swipeUp()
-        
-        
-         
-        
+  
     }
     
 
@@ -118,7 +113,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
         
         // Configure the fields of the interface.
         composeVC.setToRecipients(["abdm64@live.com"])
-        composeVC.setSubject("Photo map FeedBack")
+        composeVC.setSubject("Photos on Map FeedBack")
         composeVC.setMessageBody(" ", isHTML: false)
         
         // Present the view controller modally.
