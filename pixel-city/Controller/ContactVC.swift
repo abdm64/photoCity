@@ -71,13 +71,12 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     @IBAction func share(_ sender: Any) {
         UIGraphicsBeginImageContext(view.frame.size)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let textToShare = "Check out my app on app Store"
+        let textToShare = "Check Photos On Map app Store"
         
         if let myWebsite = URL(string: "http://itunes.apple.com/app/id1406164043") {//Enter link to your app here
-            let objectsToShare = [textToShare, myWebsite, image ?? #imageLiteral(resourceName: "AZER")] as [Any]
+            let objectsToShare = [textToShare, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
             //Excluded Activities
