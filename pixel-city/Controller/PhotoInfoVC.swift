@@ -11,6 +11,7 @@ import SwiftyJSON
 import Alamofire
 import AlamofireImage
 import SDWebImage
+import SVProgressHUD
 
 class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     // Outltes
@@ -52,6 +53,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         //howToUse()
         isAppAlreadyLaunchedOnce()
         hightOfPhoto.constant = 0.4 * screenSize.size.height
+       
     }
     
     override func viewDidLoad() {
@@ -72,10 +74,47 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
 
    
     @IBAction func dismiss(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let image = imageView.image!
+     SVProgressHUD.show(withStatus: "Downloding")
+       // let time =
+       //, status: "Downloading")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+             SVProgressHUD.dismiss()
+            UIImageWriteToSavedPhotosAlbum(image.af_imageAspectScaled(toFill: CGSize(width: self.screenSize.size.width, height: self.screenSize.size.height)), self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            
+        }
+       
+        
+        
         
     }
-    
+    //MARK: - Add image to Library
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+//            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+//            ac.addAction(UIAlertAction(title: "OK", style: .default))
+//            present(ac, animated: true)
+            SVProgressHUD.showError(withStatus: "Error")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                SVProgressHUD.dismiss()
+                
+                
+            }
+        } else {
+//            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+//            ac.addAction(UIAlertAction(title: "OK", style: .default))
+//            present(ac, animated: true)
+           
+            SVProgressHUD.showSuccess(withStatus: "Saved")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                SVProgressHUD.dismiss()
+                
+                
+            }
+            
+        }
+    }
     func configureInfo() {
         var date = UILabel()
         date.text = "Date"

@@ -297,13 +297,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSV-Iv-xqg" customClass="viewBar" customModule="pixel_city" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGj-LH-tDR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGj-LH-tDR">
                                         <rect key="frame" x="328" y="28" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="3gb-Co-eRv"/>
                                             <constraint firstAttribute="width" constant="35" id="sRa-jn-yPC"/>
                                         </constraints>
-                                        <state key="normal" image="icons8-close-window-100"/>
+                                        <state key="normal" image="down"/>
                                         <connections>
                                             <action selector="dismiss:" destination="53D-xC-Yi4" eventType="touchUpInside" id="of5-nf-5Cn"/>
                                         </connections>
@@ -1177,6 +1177,7 @@ fkODAAAAAAAAAgEAAAAAAAAAWQAAAAAAAAAAAAAAAAAAQ4U
 </mutableData>
         </image>
         <image name="closeButton-1" width="28" height="28"/>
+        <image name="down" width="50" height="50"/>
         <image name="eyes" width="25" height="25"/>
         <image name="icon" width="50" height="50"/>
         <image name="icons8-close-window-100" width="50" height="50"/>
