@@ -27,7 +27,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     override func viewDidAppear(_ animated: Bool) {
         
         
-      //  howToUse()
+        howToUse()
         
         isAppAlreadyLaunchedOnce()
     }
@@ -138,6 +138,8 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     func howToUse(){
         let swipeUp = SwipeUP()
         swipeUp.modalPresentationStyle = .custom
+       // swipeUp.setupView(hide: true)
+        swipeUp.passedHide = true
         present(swipeUp, animated: false, completion: nil)
         
         print("howToUse")

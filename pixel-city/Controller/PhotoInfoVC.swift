@@ -50,7 +50,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         Utilities.setUpViewXContact(hight: barHight, textHight: cityNamePositionH, h : 0.0, g: 0)
-        //howToUse()
+    howToUse()
         isAppAlreadyLaunchedOnce()
         hightOfPhoto.constant = 0.4 * screenSize.size.height
        
@@ -200,6 +200,8 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     func howToUse(){
         let swipeUp = SwipeUP()
         swipeUp.modalPresentationStyle = .custom
+        //swipeUp.setupView(hide: false)
+        swipeUp.passedHide = false
         present(swipeUp, animated: false, completion: nil)
         
         print("howToUse")

@@ -18,7 +18,7 @@ extension MapVC  {
         let alert = UIAlertController(title: "Show Photo", message: "You Drop a Pin in \(city) would you discover all the Photos  taken in \(city) !? ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action : UIAlertAction) in
             SVProgressHUD.show(withStatus: "Please Wait")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                 // change 2 to desired
                 SVProgressHUD.dismiss()
                 self.animateIn()
@@ -86,7 +86,7 @@ extension MapVC  {
             }
             
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                 if self.annotationSearch != nil {
                 self.retrieveUrls(forAnnotation: self.annotationSearch!) { (finished) in
                     
@@ -101,7 +101,7 @@ extension MapVC  {
                     }
                     // PrgrussHUD enable
                     SVProgressHUD.show(withStatus: "Please Wait")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.8) {
                         SVProgressHUD.dismiss()
                         self.animateIn()
                         self.collectionViewPop?.reloadData()

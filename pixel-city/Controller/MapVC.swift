@@ -348,7 +348,7 @@ extension MapVC: MKMapViewDelegate {
         
         getAddressFromGeocodeCoordinate(coordinate: adressLocation)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
           
             self.showAlertMoveToPhoto(city: self.nameCity!)
            
@@ -491,7 +491,7 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
         
         if imageUrlArray.count == 0 {
             cityNamePop.text = "no Photo in this area"
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                 self.animateOut()
                 self.removePin()
                 self.cancelAllSessions()

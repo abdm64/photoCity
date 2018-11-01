@@ -102,6 +102,8 @@
 			children = (
 				458A89A72118CAC7000F4520 /* HowToUseVC.xib */,
 				450972012150058D00E57253 /* SwipeUP.xib */,
+				458A89A62118CAC7000F4520 /* HowToUseVC.swift */,
+				450972002150058D00E57253 /* SwipeUP.swift */,
 			);
 			path = nib;
 			sourceTree = "<group>";
@@ -177,11 +179,9 @@
 				71167C991F1D498100EF4312 /* MapVC.swift */,
 				71A713751F21732F00B1BBD4 /* PopVC.swift */,
 				459B2CEF20FB92EE009FD5A4 /* ContactVC.swift */,
-				458A89A62118CAC7000F4520 /* HowToUseVC.swift */,
 				45FE5E5420FCEF470095C6C3 /* PhotoInfoVC.swift */,
 				45B27EAC210BC3290074C947 /* File.swift */,
 				4532AD0B210F66FD00B06C0C /* WebVC.swift */,
-				450972002150058D00E57253 /* SwipeUP.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
