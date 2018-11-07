@@ -50,7 +50,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         Utilities.setUpViewXContact(hight: barHight, textHight: cityNamePositionH, h : 0.0, g: 0)
-    howToUse()
+  //  howToUse()
         isAppAlreadyLaunchedOnce()
         hightOfPhoto.constant = 0.4 * screenSize.size.height
        
@@ -76,8 +76,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func dismiss(_ sender: Any) {
         let image = imageView.image!
      SVProgressHUD.show(withStatus: "Downloding")
-       // let time =
-       //, status: "Downloading")
+      
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
              SVProgressHUD.dismiss()
             UIImageWriteToSavedPhotosAlbum(image.af_imageAspectScaled(toFill: CGSize(width: self.screenSize.size.width, height: self.screenSize.size.height)), self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)

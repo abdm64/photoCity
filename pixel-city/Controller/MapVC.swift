@@ -57,6 +57,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     let transition = CircularTransition()
     var circlePlace = Bool()
     var blurEffectView = UIVisualEffectView()
+     var currentPlacmark = CLPlacemark()
     
     @IBOutlet weak var barHight: NSLayoutConstraint!
     
@@ -223,6 +224,30 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         
         return transition
     }
+    func showDirection(){
+       
+        let directionRequast = MKDirectionsRequest()
+        let destinationPlacemark = MKPlacemark(placemark: currentPlacmark)
+        directionRequast.source = MKMapItem.forCurrentLocation()
+        directionRequast.destination = MKMapItem(placemark: destinationPlacemark)
+        directionRequast.transportType = .walking
+        // Calculate destination // route
+        let directions = MKDirections(request: directionRequast)
+        directions.calculate { (directionResponse, error) in
+            guard let directionResponse  = directionResponse else {
+                if let error = error {
+                    print("errorDestination\(error.localizedDescription)")
+                }
+                return
+            }
+            let route = directionResponse.routes[0]
+            self.mapView.removeOverlays(self.mapView.overlays)
+            self.mapView.add(route.polyline, level: .aboveRoads)
+            //Nice Zooming
+            let routeRect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegionForMapRect(routeRect), animated: true)
+        }
+    }
     
 
 } // Class
@@ -262,6 +287,19 @@ extension MapVC: MKMapViewDelegate {
         pinAnnotation.pinTintColor = #colorLiteral(red: 0.4400485754, green: 0.5003788471, blue: 0.903263092, alpha: 1)
         pinAnnotation.animatesDrop = true
         return pinAnnotation
+    }
+//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+//       if  let location = view.annotation as? DroppablePin {
+//            self.currentPlacmark = MKPlacemark(coordinate: location.coordinate)
+//        }
+//    }
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let rendrer = MKPolylineRenderer(overlay: overlay)
+        rendrer.strokeColor = UIColor.blue
+            rendrer.lineWidth = 4.0
+        
+        
+        return rendrer
     }
     
     func getAddressFromGeocodeCoordinate(coordinate: CLLocation) {
@@ -510,27 +548,27 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
         } else {
              cell.imageView.sd_setImage(with: URL(string:imageUrlArray[indexPath.row]), placeholderImage: #imageLiteral(resourceName: "ImageDownload"), options: [.continueInBackground, .progressiveDownload, .scaleDownLargeImages] , completed: nil)
         
-            if jsonFavArray.count  > 1 || jsonViewArray.count > 1 {
-                
-                    cell.commentTxt.text = jsonFavArray[indexPath.row]
-                    cell.likeText.text =  jsonViewArray[indexPath.row]
-                
-                
-            } else {
-                self.animateOut()
-                self.removePin()
-                cancelAllSessions()
-                imageUrlArray = []
-                imageUrlArrayHD = []
-                photoInfos = []
-                imageArray = []
-                imageTitles = []
-                jsonViewArray = []
-                jsonFavArray = []
-                Utilities.alert(title: "Error", message: "Check your internet Connection and  Try Again")
-                
-     
-            }
+//            if jsonFavArray.count  > 1 || jsonViewArray.count > 1 {
+//                
+//                    cell.commentTxt.text = jsonFavArray[indexPath.row]
+//                    cell.likeText.text =  jsonViewArray[indexPath.row]
+//                
+//                
+//            } else {
+//                self.animateOut()
+//                self.removePin()
+//                cancelAllSessions()
+//                imageUrlArray = []
+//                imageUrlArrayHD = []
+//                photoInfos = []
+//                imageArray = []
+//                imageTitles = []
+//                jsonViewArray = []
+//                jsonFavArray = []
+//                Utilities.alert(title: "Error", message: "Check your internet Connection and  Try Again")
+//                
+//     
+//            }
             
             
             
