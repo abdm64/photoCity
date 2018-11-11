@@ -58,6 +58,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     var circlePlace = Bool()
     var blurEffectView = UIVisualEffectView()
      var currentPlacmark = CLPlacemark()
+    var  annotation : DroppablePin?
+    static let intance = MapVC()
+    var blockedArray = [String]()
     
     @IBOutlet weak var barHight: NSLayoutConstraint!
     
@@ -82,6 +85,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         } else {
             print("notIphone5")
         }
+        if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
+            blockedArray = x
+        }
        
         
     
@@ -104,7 +110,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         collectionViewPop.delegate = self
         collectionViewPop.dataSource = self
         
-       // registerForPreviewing(with: self, sourceView: collectionViewPop)
+     
         
         
     }
@@ -224,10 +230,10 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         
         return transition
     }
-    func showDirection(){
+    public  func showDirection(coordinate: CLLocationCoordinate2D){
        
         let directionRequast = MKDirectionsRequest()
-        let destinationPlacemark = MKPlacemark(placemark: currentPlacmark)
+        let destinationPlacemark = MKPlacemark(coordinate: coordinate)
         directionRequast.source = MKMapItem.forCurrentLocation()
         directionRequast.destination = MKMapItem(placemark: destinationPlacemark)
         directionRequast.transportType = .walking
@@ -294,14 +300,14 @@ extension MapVC: MKMapViewDelegate {
 //        }
 //    }
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let rendrer = MKPolylineRenderer(overlay: overlay)
+        let rendrer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         rendrer.strokeColor = UIColor.blue
             rendrer.lineWidth = 4.0
-        
-        
+
+
         return rendrer
     }
-    
+
     func getAddressFromGeocodeCoordinate(coordinate: CLLocation) {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(coordinate) { (placeMarket, error) in
@@ -374,15 +380,15 @@ extension MapVC: MKMapViewDelegate {
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
-        let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
+         annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
         
-        mapView.addAnnotation(annotation)
+        mapView.addAnnotation(annotation!)
         
         
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(touchCoordinate, 30000,30000)
         mapView.setRegion(coordinateRegion, animated: true)
         
-        let adressLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        let adressLocation = CLLocation(latitude: annotation!.coordinate.latitude, longitude: annotation!.coordinate.longitude)
         
         getAddressFromGeocodeCoordinate(coordinate: adressLocation)
         
@@ -395,7 +401,7 @@ extension MapVC: MKMapViewDelegate {
       
         
         
-        retrieveUrls(forAnnotation: annotation) { (finished) in
+        retrieveUrls(forAnnotation: annotation!) { (finished) in
             if finished {
                 self.retrieveImages(handler: { (finished) in
                     if finished {
@@ -451,10 +457,15 @@ extension MapVC: MKMapViewDelegate {
                     self.getNumbFav(data: favJSON)
                    
                 })
+                if self.blockedArray.contains(postUrlHD){
+                    
+                } else {
+                    self.imageUrlArray.append(postUrl)
+                    self.imageUrlArrayHD.append(postUrlHD)
+                    self.imageTitles.append(title1)
+                }
             
-                                self.imageUrlArray.append(postUrl)
-                                self.imageUrlArrayHD.append(postUrlHD)
-                                self.imageTitles.append(title1)
+                
                 
             }
            
@@ -548,27 +559,6 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
         } else {
              cell.imageView.sd_setImage(with: URL(string:imageUrlArray[indexPath.row]), placeholderImage: #imageLiteral(resourceName: "ImageDownload"), options: [.continueInBackground, .progressiveDownload, .scaleDownLargeImages] , completed: nil)
         
-//            if jsonFavArray.count  > 1 || jsonViewArray.count > 1 {
-//                
-//                    cell.commentTxt.text = jsonFavArray[indexPath.row]
-//                    cell.likeText.text =  jsonViewArray[indexPath.row]
-//                
-//                
-//            } else {
-//                self.animateOut()
-//                self.removePin()
-//                cancelAllSessions()
-//                imageUrlArray = []
-//                imageUrlArrayHD = []
-//                photoInfos = []
-//                imageArray = []
-//                imageTitles = []
-//                jsonViewArray = []
-//                jsonFavArray = []
-//                Utilities.alert(title: "Error", message: "Check your internet Connection and  Try Again")
-//                
-//     
-//            }
             
             
             

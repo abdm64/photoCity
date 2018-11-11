@@ -21,8 +21,13 @@ extension MapVC  {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                 // change 2 to desired
                 SVProgressHUD.dismiss()
-                self.animateIn()
-                self.collectionViewPop.reloadData()
+                if self.imageUrlArray.count == 0 {
+                    Utilities.alert(title: "Try Again", message: "There is no images in this area")
+                } else {
+                    self.animateIn()
+                    self.collectionViewPop.reloadData()
+                }
+                
             }
             
             

@@ -12,6 +12,7 @@ import Alamofire
 import AlamofireImage
 import SDWebImage
 import SVProgressHUD
+import MapKit
 
 class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     // Outltes
@@ -45,8 +46,8 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     var passedOwner = ""
     var passedCityName = ""
     let boldDesc = "Description"
-   var screenSize = UIScreen.main.bounds
-    
+    var screenSize = UIScreen.main.bounds
+    var blockedArray = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
         Utilities.setUpViewXContact(hight: barHight, textHight: cityNamePositionH, h : 0.0, g: 0)
@@ -58,17 +59,21 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         configureInfo()
         imageView.isUserInteractionEnabled = true
         addTap()
         swipeUp()
-       print(createUrl(id: passedID, owner: passedOwner))
+      
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         imageView.contentMode = .scaleAspectFill
         SDImageCache.shared().clearMemory()
         SDImageCache.shared().clearDisk(onCompletion: nil)
+        if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
+            blockedArray = x
+        }
        
     }
 
@@ -174,20 +179,37 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func shareBtnPressed(_ sender: Any) {
-
-        let textToShare = "check Out the Photo On Flicker"
+       
+       
         
-        if let myWebsite = URL(string: createUrl(id: passedID, owner: passedOwner)) {//Enter link to your app here
-            let objectsToShare = [textToShare, myWebsite] as [Any]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+       
+       
+       
+        print(blockedArray)
+        let alert = UIAlertController(title: "Report image", message: "You may found this image offensive ; you can report this image and we will remove it from our system in maximun 24 hours ", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (action : UIAlertAction) in
+            if self.blockedArray.contains(self.passedUrl) {
+                
+            } else {
+                
+                self.blockedArray.append(self.passedUrl)
+                UserDefaults.standard.set(self.blockedArray, forKey: "zouzou")
+                
+                
+                
+                
+                
+            }
             
-            //Excluded Activities
-            activityVC.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
-            //
             
-            activityVC.popoverPresentationController?.sourceView = sender as! UIView
-            self.present(activityVC, animated: true, completion: nil)
-        }
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        
+        
+        self.present(alert, animated: true, completion: nil)
         
     }
     
@@ -195,6 +217,20 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
 //        let webVC = storyboard?.instantiateViewController(withIdentifier: "webVc") as! WebVC
 //        webVC.passedUrl = createUrl(id: passedID, owner: passedOwner)
 //        self.present(webVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func getDirection(_ sender: Any) {
+        MapVC.intance.showDirection(coordinate: convertCoordinate(lon: 3.042048, lat: 36.752887))
+        dismissView()
+        
+    }
+    func convertCoordinate(lon : Double , lat : Double) -> CLLocationCoordinate2D {
+        var coordinate =  CLLocationCoordinate2D()
+            coordinate.latitude = lat
+            coordinate.longitude = lon
+        
+        return coordinate
     }
     func howToUse(){
         let swipeUp = SwipeUP()

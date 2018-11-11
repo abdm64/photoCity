@@ -325,6 +325,9 @@
                                             <constraint firstAttribute="height" constant="35" id="TJK-rb-1Yg"/>
                                         </constraints>
                                         <state key="normal" image="car"/>
+                                        <connections>
+                                            <action selector="getDirection:" destination="53D-xC-Yi4" eventType="touchUpInside" id="dul-nZ-Ftq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.32549019610000002" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -390,21 +393,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0D-Lr-pKG">
                                 <rect key="frame" x="0.0" y="275" width="375" height="50"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="o9F-nl-fg8">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="o9F-nl-fg8">
                                         <rect key="frame" x="50" y="10" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="UgZ-O6-UyZ"/>
                                             <constraint firstAttribute="width" constant="30" id="yjZ-4z-bad"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyes" translatesAutoresizingMaskIntoConstraints="NO" id="scl-Bp-8Xe">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyes" translatesAutoresizingMaskIntoConstraints="NO" id="scl-Bp-8Xe">
                                         <rect key="frame" x="295" y="10" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="1LD-LZ-4qQ"/>
                                             <constraint firstAttribute="width" constant="30" id="eBE-p9-9Rm"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4d-lh-L0X">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4d-lh-L0X">
                                         <rect key="frame" x="95" y="14.5" width="46" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="TjJ-vT-pu4"/>
@@ -414,7 +417,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cz-LB-vLd">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cz-LB-vLd">
                                         <rect key="frame" x="239" y="14.5" width="46" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="TP3-nZ-Xe9"/>
@@ -457,7 +460,7 @@
                                     <constraint firstAttribute="width" constant="45" id="NcY-mY-gsG"/>
                                     <constraint firstAttribute="height" constant="45" id="pSt-wu-CyK"/>
                                 </constraints>
-                                <state key="normal" image="shareButton"/>
+                                <state key="normal" image="Flag"/>
                                 <connections>
                                     <action selector="shareBtnPressed:" destination="53D-xC-Yi4" eventType="touchUpInside" id="2Bv-vY-c2R"/>
                                 </connections>
@@ -889,6 +892,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Flag" width="50" height="50"/>
         <image name="ImageDownload" width="375" height="667"/>
         <image name="button:lKO-D6-opO:image" width="50" height="50">
             <mutableData key="keyedArchiveRepresentation">
@@ -14808,6 +14812,5 @@ HwAMYicADHOTAAxzlQAMc5oADHOoAAxzrAAMc7MADHO4AAxzxQAMc8gADHPVAAxz2gAMc+IADHPlAAxz
         <image name="info2" width="50" height="50"/>
         <image name="like" width="25" height="25"/>
         <image name="locationSketch" width="50" height="50"/>
-        <image name="shareButton" width="50" height="50"/>
     </resources>
 </document>
