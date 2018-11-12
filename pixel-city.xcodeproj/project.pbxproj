@@ -15,6 +15,7 @@
 		453366032108FD4400791FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453366022108FD4300791FDD /* Assets.xcassets */; };
 		453C13B820F4B982009F5071 /* PopViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C13B720F4B982009F5071 /* PopViewC.swift */; };
 		453C13BA20F4F225009F5071 /* PhotoViewPopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */; };
+		454497F92198A8D000EDE1C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 454497F82198A8CF00EDE1C3 /* GoogleService-Info.plist */; };
 		455B263120FE242A008035DD /* PhotoJsonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455B263020FE242A008035DD /* PhotoJsonInfo.swift */; };
 		458A89A82118CAC7000F4520 /* HowToUseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458A89A62118CAC7000F4520 /* HowToUseVC.swift */; };
 		458A89A92118CAC7000F4520 /* HowToUseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458A89A72118CAC7000F4520 /* HowToUseVC.xib */; };
@@ -48,6 +49,7 @@
 		453C13B720F4B982009F5071 /* PopViewC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewC.swift; sourceTree = "<group>"; };
 		453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewPopCell.swift; sourceTree = "<group>"; };
 		453E23E220E1137200C913AD /* pixel-city-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pixel-city-Bridging-Header.h"; sourceTree = "<group>"; };
+		454497F82198A8CF00EDE1C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		455B263020FE242A008035DD /* PhotoJsonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoJsonInfo.swift; sourceTree = "<group>"; };
 		458A89A62118CAC7000F4520 /* HowToUseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseVC.swift; sourceTree = "<group>"; };
 		458A89A72118CAC7000F4520 /* HowToUseVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HowToUseVC.xib; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				459E63F820FFA3B50042C77A /* icons8-user-location-50.png */,
 				71167CA01F1D498100EF4312 /* LaunchScreen.storyboard */,
 				71167CA31F1D498100EF4312 /* Info.plist */,
+				454497F82198A8CF00EDE1C3 /* GoogleService-Info.plist */,
 			);
 			path = "pixel-city";
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				450972032150058E00E57253 /* SwipeUP.xib in Resources */,
 				453366032108FD4400791FDD /* Assets.xcassets in Resources */,
 				71167C9D1F1D498100EF4312 /* Main.storyboard in Resources */,
+				454497F92198A8D000EDE1C3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,17 +312,25 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-pixel-city/Pods-pixel-city-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

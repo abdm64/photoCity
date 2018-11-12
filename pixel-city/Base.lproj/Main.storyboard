@@ -460,7 +460,7 @@
                                     <constraint firstAttribute="width" constant="45" id="NcY-mY-gsG"/>
                                     <constraint firstAttribute="height" constant="45" id="pSt-wu-CyK"/>
                                 </constraints>
-                                <state key="normal" image="Flag"/>
+                                <state key="normal" image="flag1"/>
                                 <connections>
                                     <action selector="shareBtnPressed:" destination="53D-xC-Yi4" eventType="touchUpInside" id="2Bv-vY-c2R"/>
                                 </connections>
@@ -892,7 +892,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Flag" width="50" height="50"/>
         <image name="ImageDownload" width="375" height="667"/>
         <image name="button:lKO-D6-opO:image" width="50" height="50">
             <mutableData key="keyedArchiveRepresentation">
@@ -1194,6 +1193,7 @@ fkODAAAAAAAAAgEAAAAAAAAAWQAAAAAAAAAAAAAAAAAAQ4U
         <image name="closeButton-1" width="28" height="28"/>
         <image name="down" width="50" height="50"/>
         <image name="eyes" width="25" height="25"/>
+        <image name="flag1" width="50" height="50"/>
         <image name="icon" width="50" height="50"/>
         <image name="icons8-close-window-100" width="50" height="50"/>
         <image name="imageView:7Us-Uq-yfn:image" width="337" height="600">

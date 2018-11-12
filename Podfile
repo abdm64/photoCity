@@ -11,4 +11,9 @@ target 'pixel-city' do
 	 pod 'SDWebImage'
 	 pod 'SwiftyJSON'
 	 pod 'SVProgressHUD'
+	 pod 'Firebase/Core'
+	 pod 'Firebase/Auth'
+  	 pod 'Firebase/Database'
+
+
 end

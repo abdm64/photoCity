@@ -13,6 +13,8 @@ import AlamofireImage
 import SDWebImage
 import SVProgressHUD
 import MapKit
+import Firebase
+import FirebaseDatabase
 
 class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     // Outltes
@@ -185,7 +187,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
        
        
        
-        print(blockedArray)
+     
         let alert = UIAlertController(title: "Report image", message: "You may found this image offensive ; you can report this image and we will remove it from our system in maximun 24 hours ", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (action : UIAlertAction) in
@@ -198,11 +200,20 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
                 
                 
                 
+                if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
+
+                    var ref: DatabaseReference!
+                    
+                    ref = Database.database().reference()
+                    ref.setValue(x)
+                  //  print(x)
+
+                }
                 
                 
             }
             
-            
+           
             
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

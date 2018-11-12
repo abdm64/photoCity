@@ -13,6 +13,9 @@ import Alamofire
 import AlamofireImage
 import SwiftyJSON
 import SDWebImage
+import Firebase
+import FirebaseDatabase
+
 
 
 class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
@@ -61,6 +64,10 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     var  annotation : DroppablePin?
     static let intance = MapVC()
     var blockedArray = [String]()
+    var ref : DatabaseReference?
+    var databaseHandler : DatabaseHandle?
+   
+    
     
     @IBOutlet weak var barHight: NSLayoutConstraint!
     
@@ -68,12 +75,15 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
   
     
     override func viewDidAppear(_ animated: Bool) {
+        
+       
         SDImageCache.shared().clearMemory()
         SDImageCache.shared().clearDisk(onCompletion: nil)
         dementionForPopView()
        // setUpView()
          isAppAlreadyLaunchedOnce()
        // howToUse()
+        
         
         if UIScreen.main.bounds.width > 320 {
             barTxt.font = barTxt.font.withSize(17)
@@ -87,8 +97,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         }
         if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
             blockedArray = x
+
+            
         }
+        // retrive the link and listen for the changes
+        
        
+        
         
     
         
@@ -103,7 +118,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         locationManager.delegate = self
         configureLocationServices()
         circlePlace = true
-      
+        retriveDataFromCloud()
+      print(blockedArray)
         addLongPress()
        addTap()
         
@@ -127,6 +143,26 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         longPressed.delegate = self
         mapView.addGestureRecognizer(longPressed)
        
+        
+    }
+    func retriveDataFromCloud(){
+        ref = Database.database().reference()
+        databaseHandler  = ref?.child("wallpaper-on-maps").observe(.childAdded, with: { (snapshot) in
+            // Code execute when link add
+            
+            // Take data from snapshoyt and added to Blocked array
+            let link = snapshot.value as? String
+            if let actuellLink = link {
+                self.blockedArray.append(actuellLink)
+            }
+          
+            print(self.blockedArray)
+            
+            
+            
+            
+        })
+        
         
     }
     func addTap(){
