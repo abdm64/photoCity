@@ -50,10 +50,11 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
     let boldDesc = "Description"
     var screenSize = UIScreen.main.bounds
     var blockedArray = [String]()
+     var databaseHandler : DatabaseHandle?
     
     override func viewWillAppear(_ animated: Bool) {
         Utilities.setUpViewXContact(hight: barHight, textHight: cityNamePositionH, h : 0.0, g: 0)
-  //  howToUse()
+    howToUse()
         isAppAlreadyLaunchedOnce()
         hightOfPhoto.constant = 0.4 * screenSize.size.height
        
@@ -66,6 +67,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         imageView.isUserInteractionEnabled = true
         addTap()
         swipeUp()
+       
       
         
     }
@@ -73,9 +75,11 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         imageView.contentMode = .scaleAspectFill
         SDImageCache.shared().clearMemory()
         SDImageCache.shared().clearDisk(onCompletion: nil)
-        if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
-            blockedArray = x
-        }
+//        if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
+//            blockedArray = x
+//        }
+         retriveDataFromCloud()
+        print(self.blockedArray)
        
     }
 
@@ -125,7 +129,7 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         var date = UILabel()
         date.text = "Date"
         date.font =  UIFont.systemFont(ofSize: 15)
-        print(date)
+        
         //date.text = "Date"
         dateTxt.text =  "Date : \(passedDate)"
         locationTxt.text = "Location : \(passedLocation)"
@@ -150,11 +154,11 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
        
         if   hightOfPhoto.constant == 0.4 * screenSize.size.height {
             UIView.animate(withDuration: 0.25) {
-                self.hightOfPhoto.constant = 0.55 * self.screenSize.size.height
+                self.hightOfPhoto.constant = 0.75 * self.screenSize.size.height
                 self.view.layoutIfNeeded()
             }
             
-        } else if   hightOfPhoto.constant == 0.55 * screenSize.size.height {
+        } else if   hightOfPhoto.constant == 0.75 * screenSize.size.height {
             UIView.animate(withDuration: 0.25) {
                  self.hightOfPhoto.constant = 0.4 * self.screenSize.size.height
                 self.view.layoutIfNeeded()
@@ -188,27 +192,23 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
        
        
      
-        let alert = UIAlertController(title: "Report image", message: "You may found this image offensive ; you can report this image and we will remove it from our system in maximun 24 hours ", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Report image", message: "You may found the content of this  image inappropriate  you can report it and we will remove it from our system in maximun 24 hours ", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Report", style: .destructive, handler: { (action : UIAlertAction) in
             if self.blockedArray.contains(self.passedUrl) {
                 
             } else {
                 
-                self.blockedArray.append(self.passedUrl)
-                UserDefaults.standard.set(self.blockedArray, forKey: "zouzou")
+             
                 
                 
+               
+                var ref: DatabaseReference!
                 
-                if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
+                ref = Database.database().reference()
+                 ref.updateChildValues([String(self.blockedArray.count): self.passedUrl])
+                
 
-                    var ref: DatabaseReference!
-                    
-                    ref = Database.database().reference()
-                    ref.setValue(x)
-                  //  print(x)
-
-                }
                 
                 
             }
@@ -222,6 +222,28 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         
         self.present(alert, animated: true, completion: nil)
         
+    }
+    func retriveDataFromCloud(){
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        databaseHandler  = ref?.observe(.value, with: { (snapshot) in
+            // Code execute when link add
+            
+            // Take data from snapshoyt and added to Blocked array
+            let link = snapshot.value as? [String]
+            
+            
+            if let actuelLink = link {
+                self.blockedArray = actuelLink
+            }
+            
+            
+            
+            
+            
+            
+        })
+       
     }
     
     @IBAction func commentPressed(_ sender: Any) {
@@ -244,11 +266,11 @@ class PhotoInfoVC: UIViewController, UIGestureRecognizerDelegate {
         return coordinate
     }
     func howToUse(){
-        let swipeUp = SwipeUP()
-        swipeUp.modalPresentationStyle = .custom
+        let howToUseInfo = HowToUsePhotoInfo()
+        howToUseInfo.modalPresentationStyle = .custom
         //swipeUp.setupView(hide: false)
-        swipeUp.passedHide = false
-        present(swipeUp, animated: false, completion: nil)
+       // swipeUp.passedHide = false
+        present(howToUseInfo, animated: false, completion: nil)
         
         print("howToUse")
         

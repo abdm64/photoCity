@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HowToUseVC" customModule="pixel_city" customModuleProvider="target">
             <connections>
+                <outlet property="alignHand" destination="Xhn-Ng-0GF" id="dfK-f0-x8j"/>
                 <outlet property="arrow" destination="t3H-wV-gj4" id="LOD-6a-vRN"/>
                 <outlet property="bgView" destination="sYD-tr-v0U" id="W4I-44-HpH"/>
+                <outlet property="cityNameLabel" destination="gaN-L1-5Rg" id="mgr-vd-AtG"/>
+                <outlet property="hand" destination="8v3-ZV-jFk" id="zXR-Cx-CgP"/>
+                <outlet property="handC" destination="gN4-D3-e4N" id="DSk-br-b6F"/>
                 <outlet property="handImage" destination="t3H-wV-gj4" id="Omh-gJ-lsp"/>
+                <outlet property="hightView" destination="dfc-Dq-xU9" id="sNW-Fp-UnP"/>
                 <outlet property="howToUseTxt" destination="K2K-54-1Ch" id="hqh-Gj-TMv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="view1" destination="9Fc-Q0-rgl" id="aAp-NM-cmY"/>
                 <outlet property="view2" destination="RmB-xA-hkw" id="PE9-nv-K2e"/>
                 <outlet property="view3" destination="Uka-8C-y3e" id="DaT-WG-VOx"/>
+                <outlet property="widthView" destination="9h8-J0-8zJ" id="c0d-XZ-zSA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -108,10 +113,18 @@
                                 <constraint firstAttribute="height" constant="61" id="o6P-wh-Lex"/>
                             </constraints>
                         </imageView>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hand" translatesAutoresizingMaskIntoConstraints="NO" id="8v3-ZV-jFk">
+                            <rect key="frame" x="157.5" y="542" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="Dwm-yn-RTP"/>
+                                <constraint firstAttribute="height" constant="60" id="I0D-Ev-ABw"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.4141695205479452" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="RmB-xA-hkw" firstAttribute="leading" secondItem="sYD-tr-v0U" secondAttribute="leading" constant="55" id="9h8-J0-8zJ"/>
+                        <constraint firstItem="8v3-ZV-jFk" firstAttribute="centerX" secondItem="sYD-tr-v0U" secondAttribute="centerX" id="OnC-vH-wKH"/>
                         <constraint firstItem="t3H-wV-gj4" firstAttribute="bottom" secondItem="gaN-L1-5Rg" secondAttribute="bottom" id="Xhn-Ng-0GF"/>
                         <constraint firstItem="Uka-8C-y3e" firstAttribute="top" secondItem="sYD-tr-v0U" secondAttribute="top" constant="60" id="aoo-tf-8zY"/>
                         <constraint firstAttribute="bottom" secondItem="RmB-xA-hkw" secondAttribute="bottom" constant="60" id="dfc-Dq-xU9"/>
@@ -119,6 +132,7 @@
                         <constraint firstAttribute="trailing" secondItem="9Fc-Q0-rgl" secondAttribute="trailing" constant="55" id="hLF-Ft-8Uo"/>
                         <constraint firstItem="9Fc-Q0-rgl" firstAttribute="top" secondItem="Uka-8C-y3e" secondAttribute="bottom" constant="60" id="mZs-da-JS5"/>
                         <constraint firstItem="Uka-8C-y3e" firstAttribute="centerX" secondItem="sYD-tr-v0U" secondAttribute="centerX" id="nKF-8t-tvK"/>
+                        <constraint firstAttribute="bottom" secondItem="8v3-ZV-jFk" secondAttribute="bottom" constant="65" id="qE7-IR-asG"/>
                     </constraints>
                     <variation key="default">
                         <mask key="subviews">
@@ -129,13 +143,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="sYD-tr-v0U" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9CB-M4-NIh"/>
-                <constraint firstItem="sYD-tr-v0U" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Knd-wX-erS"/>
-                <constraint firstItem="sYD-tr-v0U" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="UQ0-b3-Evb"/>
+                <constraint firstItem="sYD-tr-v0U" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="9CB-M4-NIh"/>
+                <constraint firstItem="sYD-tr-v0U" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Knd-wX-erS"/>
+                <constraint firstItem="sYD-tr-v0U" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="UQ0-b3-Evb"/>
                 <constraint firstItem="sYD-tr-v0U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pxp-gc-Jcs"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="38" y="123"/>
+            <point key="canvasLocation" x="37.600000000000001" y="122.78860569715144"/>
         </view>
     </objects>
     <resources>

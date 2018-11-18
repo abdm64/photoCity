@@ -15,9 +15,18 @@ class HowToUseVC: UIViewController {
     
     @IBOutlet weak var handImage: UIImageView!
     @IBOutlet weak var arrow: UIImageView!
+    
+    @IBOutlet weak var hand: UIImageView!
     @IBOutlet weak var view3: viewBar!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var howToUseTxt: UILabel!
+    
+    @IBOutlet weak var handC: NSLayoutConstraint!
+    @IBOutlet weak var widthView: NSLayoutConstraint!
+    @IBOutlet weak var cityNameLabel: UILabel!
+    @IBOutlet weak var hightView: NSLayoutConstraint!
+    
+    @IBOutlet weak var alignHand: NSLayoutConstraint!
     // var
     var tap : Int = 0
     
@@ -41,10 +50,7 @@ class HowToUseVC: UIViewController {
         view2.layer.masksToBounds = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+   
     
 
     
@@ -60,9 +66,12 @@ class HowToUseVC: UIViewController {
         view1.alpha = 0
         view2.alpha = 0
         arrow.alpha = 0
+        hand.alpha = 0
+        self.hand.transform = CGAffineTransform.init(scaleX: 0.01, y: 0.01)
         self.view2.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.view1.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
         self.arrow.transform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
+        self.hand.transform = self.handImage.transform.rotated(by: CGFloat.init(M_PI))
        
         
     }
@@ -132,10 +141,18 @@ class HowToUseVC: UIViewController {
             }
             
         }else if tap == 3 {
-            dismiss(animated: false, completion: nil)
+            cityNameLabel.text = "Discover Photo around YOU !!"
+            
+            UIView.animate(withDuration: 0.5) {
+                self.hightView.constant = 160
+                self.handC.constant = -(UIScreen.main.bounds.width/2 - 43)
+                self.alignHand.constant = 95
+                self.view.layoutIfNeeded()
+            }
+
             
         } else if tap == 4 {
-            
+            dismiss(animated: false, completion: nil)
             
         }
         

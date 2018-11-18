@@ -96,11 +96,23 @@
                                     <action selector="centerMapBtnWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qhq-Tp-QIp"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXg-Hi-Lkm">
+                                <rect key="frame" x="165" y="606" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="giM-IT-cr3"/>
+                                    <constraint firstAttribute="height" constant="45" id="jAJ-6h-wqn"/>
+                                </constraints>
+                                <state key="normal" image="Radar"/>
+                                <connections>
+                                    <action selector="findPictureAroundMe:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wSn-4a-o7D"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="g2C-vX-jTA" secondAttribute="trailing" id="8Ne-zI-ehA"/>
                             <constraint firstItem="myk-zM-DUN" firstAttribute="top" secondItem="PCj-iB-b83" secondAttribute="bottom" id="BwB-qJ-aos"/>
+                            <constraint firstItem="zXg-Hi-Lkm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D2h-HO-YpE"/>
                             <constraint firstItem="PCj-iB-b83" firstAttribute="top" secondItem="7CQ-3h-gDg" secondAttribute="bottom" id="GUv-li-Nyn"/>
                             <constraint firstItem="7CQ-3h-gDg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IVx-4O-fdC"/>
                             <constraint firstItem="myk-zM-DUN" firstAttribute="top" secondItem="KEP-FC-Dbp" secondAttribute="bottom" constant="15" id="KVu-wr-RPC"/>
@@ -110,6 +122,7 @@
                             <constraint firstItem="myk-zM-DUN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="a6Y-Tv-jKI"/>
                             <constraint firstItem="7CQ-3h-gDg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cRC-xQ-3iW"/>
                             <constraint firstAttribute="trailing" secondItem="myk-zM-DUN" secondAttribute="trailing" id="eEW-dX-yUR"/>
+                            <constraint firstItem="myk-zM-DUN" firstAttribute="top" secondItem="zXg-Hi-Lkm" secondAttribute="bottom" constant="15" id="fep-m1-AUT"/>
                             <constraint firstAttribute="trailing" secondItem="KEP-FC-Dbp" secondAttribute="trailing" constant="15" id="fwv-wo-AOV"/>
                             <constraint firstAttribute="trailing" secondItem="7CQ-3h-gDg" secondAttribute="trailing" id="gTP-Ci-HI0"/>
                             <constraint firstItem="g2C-vX-jTA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="nVK-tT-BvE"/>
@@ -318,7 +331,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ElP-3K-kmu">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ElP-3K-kmu">
                                         <rect key="frame" x="12" y="32" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="8uR-v7-RY2"/>
@@ -893,6 +906,7 @@
     </scenes>
     <resources>
         <image name="ImageDownload" width="375" height="667"/>
+        <image name="Radar" width="50" height="50"/>
         <image name="button:lKO-D6-opO:image" width="50" height="50">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI

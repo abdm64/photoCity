@@ -27,7 +27,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     override func viewDidAppear(_ animated: Bool) {
         
         
-        //howToUse()
+        howToUse()
         
         isAppAlreadyLaunchedOnce()
     }

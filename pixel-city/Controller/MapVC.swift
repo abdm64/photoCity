@@ -15,6 +15,7 @@ import SwiftyJSON
 import SDWebImage
 import Firebase
 import FirebaseDatabase
+import SVProgressHUD
 
 
 
@@ -82,7 +83,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         dementionForPopView()
        // setUpView()
          isAppAlreadyLaunchedOnce()
-       // howToUse()
+        //howToUse()
         
         
         if UIScreen.main.bounds.width > 320 {
@@ -93,19 +94,24 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
             }
             
         } else {
-            print("notIphone5")
+           
         }
-        if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
-            blockedArray = x
-
-            
-        }
+//        if let x = UserDefaults.standard.object(forKey: "zouzou") as? [String] {
+//            blockedArray = x
+//
+//
+//        }
         // retrive the link and listen for the changes
         
-       
+       addDataToCloud()
+        retriveDataFromCloud()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            
+            self.deleteDataFromCloud()
+            
+        }
         
-        
-    
+    self.cityNamePop.text = " "
         
     }
     
@@ -119,7 +125,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
         configureLocationServices()
         circlePlace = true
         retriveDataFromCloud()
-      print(blockedArray)
+    
         addLongPress()
        addTap()
         
@@ -147,22 +153,39 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     }
     func retriveDataFromCloud(){
         ref = Database.database().reference()
-        databaseHandler  = ref?.child("wallpaper-on-maps").observe(.childAdded, with: { (snapshot) in
+        databaseHandler  = ref?.observe(.value, with: { (snapshot) in
             // Code execute when link add
             
             // Take data from snapshoyt and added to Blocked array
-            let link = snapshot.value as? String
-            if let actuellLink = link {
-                self.blockedArray.append(actuellLink)
+            let link = snapshot.value as? [String]
+            
+            
+            if let actuelLink = link {
+                self.blockedArray = actuelLink
             }
-          
-            print(self.blockedArray)
+
+         
             
             
             
             
         })
         
+        
+    }
+    func addDataToCloud(){
+        var ref: DatabaseReference!
+        
+        ref = Database.database().reference()
+        ref.updateChildValues(["0": "abdm64"])
+        
+        
+    }
+    func deleteDataFromCloud(){
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.updateChildValues(["0": " "])
+
         
     }
     func addTap(){
@@ -214,6 +237,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
             
            
             
+        } else {
+            Utilities.alert(title: "Error", message:"Please enable Location service ")
         }
     }
     
@@ -236,6 +261,68 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate, UIViewControllerTran
     @IBAction func infoBtn(_ sender: Any) {
          performSegue(withIdentifier: "contact", sender: self)
        
+    }
+    
+    @IBAction func findPictureAroundMe(_ sender: Any) {
+        
+        self.cancelAllSessions()
+        self.imageUrlArray = []
+        self.imageUrlArrayHD = []
+        self.photoInfos = []
+        self.imageArray = []
+        self.imageTitles = []
+        self.jsonViewArray = []
+        self.jsonFavArray = []
+        self.removePin()
+        
+        if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
+            
+            self.centerMapOnUserLocation()
+            
+            guard let coordinate = locationManager.location?.coordinate else { return }
+            // let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, 20000, 20000)
+            let myCoordinate = DroppablePin(coordinate: coordinate, identifier: "droppablePin")
+            
+            
+            self.retrieveUrls(forAnnotation: myCoordinate) { (finished) in
+                
+                if finished {
+                    self.retrieveImages(handler: { (finished) in
+                        if finished {
+                            
+                            self.collectionViewPop?.reloadData()
+                        }
+                    })
+                }
+            } //
+            SVProgressHUD.show(withStatus: "Please Wait")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                
+                if self.imageUrlArray.count == 0 {
+                    SVProgressHUD.dismiss()
+                    Utilities.alert(title: "Try Again", message: "There is no images in this area")
+                } else {
+                    
+                    SVProgressHUD.dismiss()
+                    self.getAddressFromGeocodeCoordinate(coordinate: self.locationManager.location!)
+                    self.animateIn()
+                    self.collectionViewPop?.reloadData()
+                    
+                    
+                    
+                }
+            }
+            
+            
+            
+            
+        } else {
+            Utilities.alert(title: "Error", message:"Please enable Location service ")
+        }
+    
+        
+        
+        
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -330,11 +417,7 @@ extension MapVC: MKMapViewDelegate {
         pinAnnotation.animatesDrop = true
         return pinAnnotation
     }
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//       if  let location = view.annotation as? DroppablePin {
-//            self.currentPlacmark = MKPlacemark(coordinate: location.coordinate)
-//        }
-//    }
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let rendrer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         rendrer.strokeColor = UIColor.blue
@@ -463,7 +546,7 @@ extension MapVC: MKMapViewDelegate {
     func retrieveUrls(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()) {
         Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 100)).responseJSON { (response) in
             
-            //  print(response.data.c)
+            
             guard let json = response.result.value as? Dictionary<String, AnyObject> else { return }
             let photosDict = json["photos"] as! Dictionary<String, AnyObject>
             let photosDictArray = photosDict["photo"] as! [Dictionary<String, AnyObject>]

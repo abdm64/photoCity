@@ -19,24 +19,24 @@ class SwipeUP: UIViewController {
     @IBOutlet weak var viewUp: viewBar!
     @IBOutlet weak var handUp: UIImageView!
     
+    @IBOutlet weak var centerV: NSLayoutConstraint!
     @IBOutlet weak var centerDownloadView: NSLayoutConstraint!
     @IBOutlet weak var labelDownload: UILabel!
     @IBOutlet weak var handDownload: UIImageView!
     // Var
     var up = true
     var passedHide = Bool()
+    var tapN = Int()
     override func viewDidLayoutSubviews() {
         viewUp.layer.cornerRadius = 12
         viewUp.layer.masksToBounds = true
         viewDownload.layer.cornerRadius = 12
         viewDownload.layer.masksToBounds = true
+       
         
        setupView(hide: passedHide)
-//        if DeviceType.IS_IPHONE_5  {
-//            
-//        self.viewDownload.frame.size = CGSize(width: 200, height: 128)
-//            print("iPhone5")
-//        }
+      //  labl.text = "Report image from here"
+
     
 
     }
@@ -137,12 +137,19 @@ class SwipeUP: UIViewController {
             labelDownload.text = "Tap To Continue"
             centerDownloadView.constant = 0
             tap()
+            labl.text = "Swipe UP TO Back"
+            //
+            
+            
             
         }
         
         viewUp.alpha = 1
         handUp.alpha = 1
-        
+        centerV.constant = 0
+         labl.text = "Swipe UP TO Back"
+       
+        // self.handUp.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI))
         
         
     }
