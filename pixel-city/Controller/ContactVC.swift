@@ -27,7 +27,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
     override func viewDidAppear(_ animated: Bool) {
         
         
-        howToUse()
+        //howToUse()
         
         isAppAlreadyLaunchedOnce()
     }
@@ -73,7 +73,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         UIGraphicsEndImageContext()
         
-        let textToShare = "Check Photos On Map app Store"
+        let textToShare = "Check Wallpapers on Map on  app Store"
         
         if let myWebsite = URL(string: "http://itunes.apple.com/app/id1406164043") {//Enter link to your app here
             let objectsToShare = [textToShare, myWebsite] as [Any]
@@ -112,7 +112,7 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
         
         // Configure the fields of the interface.
         composeVC.setToRecipients(["abdm64@live.com"])
-        composeVC.setSubject("Photos on Map FeedBack")
+        composeVC.setSubject("Wallpapers on Map FeedBack")
         composeVC.setMessageBody(" ", isHTML: false)
         
         // Present the view controller modally.
@@ -136,10 +136,10 @@ class ContactVC: UIViewController, MFMailComposeViewControllerDelegate, UIGestur
         self.view.addGestureRecognizer(siwpeUp)
     }
     func howToUse(){
-        let swipeUp = SwipeUP()
+        let swipeUp = Swipe()
         swipeUp.modalPresentationStyle = .custom
        // swipeUp.setupView(hide: true)
-        swipeUp.passedHide = true
+        //swipeUp.passedHide = true
         present(swipeUp, animated: false, completion: nil)
         
         print("howToUse")

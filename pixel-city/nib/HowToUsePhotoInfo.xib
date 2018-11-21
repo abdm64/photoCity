@@ -27,14 +27,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hand" translatesAutoresizingMaskIntoConstraints="NO" id="lmg-FX-N6P">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hand" translatesAutoresizingMaskIntoConstraints="NO" id="lmg-FX-N6P" customClass="AnimateImage" customModule="pixel_city" customModuleProvider="target">
                     <rect key="frame" x="310" y="80" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="35a-nU-3PO"/>
                         <constraint firstAttribute="width" constant="60" id="tPX-8k-Z6N"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hand" translatesAutoresizingMaskIntoConstraints="NO" id="d2J-M4-2MM">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hand" translatesAutoresizingMaskIntoConstraints="NO" id="d2J-M4-2MM" customClass="AnimateImage" customModule="pixel_city" customModuleProvider="target">
                     <rect key="frame" x="300" y="542" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="hxO-Fn-LJ9"/>
@@ -51,9 +51,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6p-K9-Iga" customClass="viewBar" customModule="pixel_city" customModuleProvider="target">
                     <rect key="frame" x="59.5" y="269.5" width="256" height="128"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwipeUp To Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Izu-PO-aAS">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe Up To Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Izu-PO-aAS">
                             <rect key="frame" x="2" y="2" width="252" height="124"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>

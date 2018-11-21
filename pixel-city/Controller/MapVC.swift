@@ -499,6 +499,7 @@ extension MapVC: MKMapViewDelegate {
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         
+        
          annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
         
         mapView.addAnnotation(annotation!)
@@ -813,6 +814,15 @@ extension  MapVC {
             self.popView.alpha = 1
             self.popView.transform = CGAffineTransform.identity
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            
+            self.isAppAlreadyLaunchedOnceTapPhoto()
+          //  self.howToUseTapPhoto()
+            
+        }
+        
+       
+        
         
     }
    @objc func animateOut(){

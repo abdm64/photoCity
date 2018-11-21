@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45000F7F21A1D27100529C1E /* HowToUseSelectPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45000F7D21A1D27100529C1E /* HowToUseSelectPhoto.swift */; };
+		45000F8021A1D27100529C1E /* HowToUseSelectPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45000F7E21A1D27100529C1E /* HowToUseSelectPhoto.xib */; };
+		45000F8221A1FB2400529C1E /* AnimateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45000F8121A1FB2400529C1E /* AnimateImage.swift */; };
 		450971FF214FC14500E57253 /* detectDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450971FE214FC14500E57253 /* detectDevice.swift */; };
-		450972022150058D00E57253 /* SwipeUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450972002150058D00E57253 /* SwipeUP.swift */; };
-		450972032150058E00E57253 /* SwipeUP.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450972012150058D00E57253 /* SwipeUP.xib */; };
 		45113804210653C200FC74D9 /* CircleTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45113803210653C200FC74D9 /* CircleTransition.swift */; };
+		4526050721A176C50009ED7B /* Pulsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4526050621A176C50009ED7B /* Pulsing.swift */; };
 		4532AD0C210F66FD00B06C0C /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532AD0B210F66FD00B06C0C /* WebVC.swift */; };
 		453366032108FD4400791FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453366022108FD4300791FDD /* Assets.xcassets */; };
 		453C13B820F4B982009F5071 /* PopViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C13B720F4B982009F5071 /* PopViewC.swift */; };
@@ -30,6 +32,8 @@
 		45B27EAD210BC3290074C947 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B27EAC210BC3290074C947 /* File.swift */; };
 		45C3BF4F20EA45840005168D /* viewBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3BF4E20EA45840005168D /* viewBar.swift */; };
 		45C3BF5120EA5D1D0005168D /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3BF5020EA5D1D0005168D /* RoundBtn.swift */; };
+		45DF46FD21A2CF44002AD4CF /* Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DF46FB21A2CF44002AD4CF /* Swipe.swift */; };
+		45DF46FE21A2CF44002AD4CF /* Swipe.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45DF46FC21A2CF44002AD4CF /* Swipe.xib */; };
 		45FE5E5520FCEF480095C6C3 /* PhotoInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FE5E5420FCEF470095C6C3 /* PhotoInfoVC.swift */; };
 		71167C981F1D498100EF4312 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71167C971F1D498100EF4312 /* AppDelegate.swift */; };
 		71167C9A1F1D498100EF4312 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71167C991F1D498100EF4312 /* MapVC.swift */; };
@@ -42,10 +46,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45000F7D21A1D27100529C1E /* HowToUseSelectPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseSelectPhoto.swift; sourceTree = "<group>"; };
+		45000F7E21A1D27100529C1E /* HowToUseSelectPhoto.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HowToUseSelectPhoto.xib; sourceTree = "<group>"; };
+		45000F8121A1FB2400529C1E /* AnimateImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateImage.swift; sourceTree = "<group>"; };
 		450971FE214FC14500E57253 /* detectDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detectDevice.swift; sourceTree = "<group>"; };
-		450972002150058D00E57253 /* SwipeUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUP.swift; sourceTree = "<group>"; };
-		450972012150058D00E57253 /* SwipeUP.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeUP.xib; sourceTree = "<group>"; };
 		45113803210653C200FC74D9 /* CircleTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTransition.swift; sourceTree = "<group>"; };
+		4526050621A176C50009ED7B /* Pulsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pulsing.swift; sourceTree = "<group>"; };
 		4532AD0B210F66FD00B06C0C /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		453366022108FD4300791FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		453C13B720F4B982009F5071 /* PopViewC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopViewC.swift; sourceTree = "<group>"; };
@@ -67,6 +73,8 @@
 		45B27EAC210BC3290074C947 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		45C3BF4E20EA45840005168D /* viewBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewBar.swift; sourceTree = "<group>"; };
 		45C3BF5020EA5D1D0005168D /* RoundBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
+		45DF46FB21A2CF44002AD4CF /* Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipe.swift; sourceTree = "<group>"; };
+		45DF46FC21A2CF44002AD4CF /* Swipe.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Swipe.xib; sourceTree = "<group>"; };
 		45FE5E5420FCEF470095C6C3 /* PhotoInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoVC.swift; sourceTree = "<group>"; };
 		71167C941F1D498100EF4312 /* pixel-city.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pixel-city.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71167C971F1D498100EF4312 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,11 +115,13 @@
 			isa = PBXGroup;
 			children = (
 				458A89A72118CAC7000F4520 /* HowToUseVC.xib */,
-				450972012150058D00E57253 /* SwipeUP.xib */,
 				455BC40B219DE04500D763A8 /* HowToUsePhotoInfo.xib */,
+				45000F7E21A1D27100529C1E /* HowToUseSelectPhoto.xib */,
+				45DF46FC21A2CF44002AD4CF /* Swipe.xib */,
 				458A89A62118CAC7000F4520 /* HowToUseVC.swift */,
-				450972002150058D00E57253 /* SwipeUP.swift */,
 				455BC40A219DE04500D763A8 /* HowToUsePhotoInfo.swift */,
+				45000F7D21A1D27100529C1E /* HowToUseSelectPhoto.swift */,
+				45DF46FB21A2CF44002AD4CF /* Swipe.swift */,
 			);
 			path = nib;
 			sourceTree = "<group>";
@@ -205,6 +215,8 @@
 				453C13B720F4B982009F5071 /* PopViewC.swift */,
 				453C13B920F4F225009F5071 /* PhotoViewPopCell.swift */,
 				45113803210653C200FC74D9 /* CircleTransition.swift */,
+				4526050621A176C50009ED7B /* Pulsing.swift */,
+				45000F8121A1FB2400529C1E /* AnimateImage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,11 +308,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45DF46FE21A2CF44002AD4CF /* Swipe.xib in Resources */,
 				71167CA21F1D498100EF4312 /* LaunchScreen.storyboard in Resources */,
 				459E63F920FFA3B50042C77A /* icons8-user-location-50.png in Resources */,
 				455BC40D219DE04500D763A8 /* HowToUsePhotoInfo.xib in Resources */,
 				458A89A92118CAC7000F4520 /* HowToUseVC.xib in Resources */,
-				450972032150058E00E57253 /* SwipeUP.xib in Resources */,
+				45000F8021A1D27100529C1E /* HowToUseSelectPhoto.xib in Resources */,
 				453366032108FD4400791FDD /* Assets.xcassets in Resources */,
 				71167C9D1F1D498100EF4312 /* Main.storyboard in Resources */,
 				454497F92198A8D000EDE1C3 /* GoogleService-Info.plist in Resources */,
@@ -372,6 +385,7 @@
 				455B263120FE242A008035DD /* PhotoJsonInfo.swift in Sources */,
 				71A713761F21732F00B1BBD4 /* PopVC.swift in Sources */,
 				459E63F720FF96CF0042C77A /* GradientView.swift in Sources */,
+				45000F8221A1FB2400529C1E /* AnimateImage.swift in Sources */,
 				45977CDD20E4EFB000BA51D1 /* extention.swift in Sources */,
 				459B2CF020FB92EE009FD5A4 /* ContactVC.swift in Sources */,
 				71167CB21F1EA6C700EF4312 /* Constants.swift in Sources */,
@@ -379,16 +393,18 @@
 				45B27EAD210BC3290074C947 /* File.swift in Sources */,
 				45FE5E5520FCEF480095C6C3 /* PhotoInfoVC.swift in Sources */,
 				4532AD0C210F66FD00B06C0C /* WebVC.swift in Sources */,
+				4526050721A176C50009ED7B /* Pulsing.swift in Sources */,
 				458A89A82118CAC7000F4520 /* HowToUseVC.swift in Sources */,
 				459E63FB20FFB9290042C77A /* Utilities.swift in Sources */,
 				453C13B820F4B982009F5071 /* PopViewC.swift in Sources */,
 				71167C9A1F1D498100EF4312 /* MapVC.swift in Sources */,
 				45C3BF4F20EA45840005168D /* viewBar.swift in Sources */,
 				71167CAE1F1D632300EF4312 /* DroppablePin.swift in Sources */,
+				45DF46FD21A2CF44002AD4CF /* Swipe.swift in Sources */,
 				459B2CEE20FB88FF009FD5A4 /* SWRevealViewController.m in Sources */,
 				45C3BF5120EA5D1D0005168D /* RoundBtn.swift in Sources */,
+				45000F7F21A1D27100529C1E /* HowToUseSelectPhoto.swift in Sources */,
 				450971FF214FC14500E57253 /* detectDevice.swift in Sources */,
-				450972022150058D00E57253 /* SwipeUP.swift in Sources */,
 				455BC40C219DE04500D763A8 /* HowToUsePhotoInfo.swift in Sources */,
 				453C13BA20F4F225009F5071 /* PhotoViewPopCell.swift in Sources */,
 				71167C981F1D498100EF4312 /* AppDelegate.swift in Sources */,

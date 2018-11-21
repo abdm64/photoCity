@@ -54,6 +54,20 @@ extension MapVC  {
             return false
         }
     }
+    func isAppAlreadyLaunchedOnceTapPhoto()->Bool{
+        let defaults = UserDefaults.standard
+        
+        if let isAppAlreadyLaunchedOnceTapPhoto = defaults.string(forKey: "isAppAlreadyLaunchedOnceTapPhoto"){
+            print("App already launched : \(isAppAlreadyLaunchedOnceTapPhoto)")
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnceTapPhoto")
+           
+            
+            howToUseTapPhoto()
+            return false
+        }
+    }
     func showAlertCityName() {
         
         self.cancelAllSessions()
@@ -152,6 +166,14 @@ extension MapVC  {
         
         
         
+    }
+   func  howToUseTapPhoto() {
+    let howToUsetapPhoto = HowToUseSelectPhoto()
+    howToUsetapPhoto.modalPresentationStyle = .custom
+    present(howToUsetapPhoto, animated: false, completion: nil)
+    
+    
+    
     }
     
     

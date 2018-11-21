@@ -134,14 +134,14 @@ class HowToUseVC: UIViewController {
         } else if tap == 2 {
             self.animateOut()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.howToUseTxt.text = "Welcome to City Photos"
+                self.howToUseTxt.text = "Welcome to Wallpapers on Map"
                 self.animateView2()
                  self.handImage.transform = self.handImage.transform.rotated(by: CGFloat.init(M_PI))
                 
             }
             
         }else if tap == 3 {
-            cityNameLabel.text = "Discover Photo around YOU !!"
+            cityNameLabel.text = "Discover Photos around YOU in Radius of 1000 meter "
             
             UIView.animate(withDuration: 0.5) {
                 self.hightView.constant = 160
